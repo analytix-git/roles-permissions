@@ -426,7 +426,7 @@ section.block{margin-bottom:80px}
     <div class="insight coral">
       <div class="insight-dot">5</div>
       <div class="insight-label">GUEST</div>
-      <div class="insight-text"><strong>Zero visibilidade no tenant.</strong> Não vê arquivos públicos, não vê salas, não vê outros membros. Só acessa salas onde foi explicitamente adicionado como room_member ou room_guest. Caso de uso: médico consultor externo, auditor pontual, parceiro.</div>
+      <div class="insight-text"><strong>Zero visibilidade no tenant.</strong> Não vê arquivos públicos, não vê salas, não vê outros membros. Só acessa salas onde foi explicitamente adicionado como room_member ou room_viewer. Caso de uso: médico consultor externo, auditor pontual, parceiro.</div>
     </div>
   </div>
 </section>
@@ -471,7 +471,7 @@ section.block{margin-bottom:80px}
     </div>
     <div class="insight green">
       <div class="insight-dot">3</div>
-      <div class="insight-label">ROOM_GUEST</div>
+      <div class="insight-label">ROOM_VIEWER</div>
       <div class="insight-text"><strong>Consome e interage.</strong> Comenta, reage, mas não adiciona conteúdo. Stakeholders convidados pontualmente.</div>
     </div>
   </div>
@@ -621,7 +621,7 @@ section.block{margin-bottom:80px}
           <th class="role-head col-tenant">guest</th>
           <th class="role-head col-room">room_owner</th>
           <th class="role-head col-room">room_member</th>
-          <th class="role-head col-room">room_guest</th>
+          <th class="role-head col-room">room_viewer</th>
         </tr>
       </thead>
       <tbody>
@@ -761,7 +761,7 @@ section.block{margin-bottom:80px}
 
     <div class="matrix-note frozen-rule"><strong>Regra congelada:</strong> quando <code>archived_at</code> está preenchido numa sala, toda operação de escrita nessa sala é recusada — independentemente do role. Apenas <code>room.unarchive</code> é permitido para roles com essa capacidade.</div>
     <div class="matrix-note"><strong>Como ler a matriz:</strong> ● = capacidade plena (pode agir sobre qualquer recurso no escopo); ◐ = só sobre o que criou (owner check); ○ = condicional (depende de configuração ou contexto adicional); — = sem permissão.</div>
-    <div class="matrix-note"><strong>Guest:</strong> coluna inteira é <strong>—</strong> no escopo tenant. O guest só tem acesso efetivo quando combinado com um room role (room_owner, room_member ou room_guest). Sem room role = acesso a nada.</div>
+    <div class="matrix-note"><strong>Guest:</strong> coluna inteira é <strong>—</strong> no escopo tenant. O guest só tem acesso efetivo quando combinado com um room role (room_owner, room_member ou room_viewer). Sem room role = acesso a nada.</div>
   </div>
 </section>
 
