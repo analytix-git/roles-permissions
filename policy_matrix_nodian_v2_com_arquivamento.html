@@ -1,0 +1,238 @@
+<h2 class="sr-only">Matriz de permissões da plataforma Nodian v2, com as ações de arquivar e desarquivar sala incluídas, mantendo ExternalRef como decisão pendente.</h2>
+
+<style>
+.legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 0.5rem 0 1rem; font-size: 13px; color: var(--color-text-secondary); }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.dot { width: 14px; height: 14px; border-radius: 4px; display: inline-block; border: 0.5px solid var(--color-border-tertiary); }
+.matrix { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
+.matrix th, .matrix td { padding: 8px 6px; border-bottom: 0.5px solid var(--color-border-tertiary); text-align: center; vertical-align: middle; }
+.matrix th { font-weight: 500; font-size: 11px; color: var(--color-text-secondary); }
+.matrix th.role-head { writing-mode: vertical-rl; transform: rotate(180deg); height: 110px; padding: 8px 4px; white-space: nowrap; }
+.matrix td.action { text-align: left; font-size: 12px; padding-left: 10px; }
+.matrix td.action code { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-primary); background: var(--color-background-secondary); padding: 1px 5px; border-radius: 4px; }
+.matrix tr.section-row td { background: var(--color-background-secondary); font-weight: 500; font-size: 11px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.04em; padding: 8px 10px; text-align: left; }
+.matrix tr.pending td.action code { background: #FAEEDA; color: #633806; }
+.matrix tr.lifecycle td.action code { background: #EEEDFE; color: #3C3489; }
+.cell-full { color: #0F6E56; font-weight: 500; }
+.cell-own { color: #185FA5; font-weight: 500; }
+.cell-cond { color: #854F0B; font-weight: 500; }
+.cell-no { color: var(--color-text-tertiary); }
+.col-group-head { font-weight: 500; font-size: 11px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.04em; text-align: center; padding: 6px 4px; border-bottom: 0.5px solid var(--color-border-secondary); }
+.col-nodian { background: rgba(127, 119, 221, 0.04); }
+.col-tenant { background: rgba(29, 158, 117, 0.04); }
+.col-room { background: rgba(216, 90, 48, 0.04); }
+.note { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; margin: 1rem 0 0; padding: 12px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); }
+.note + .note { margin-top: 8px; }
+.frozen-rule { border-left: 3px solid #7F77DD; padding-left: 10px; background: rgba(127, 119, 221, 0.06); }
+</style>
+
+<div style="padding: 0.5rem 0;">
+
+<div class="legend">
+  <div class="legend-item"><span class="dot" style="background: #C0DD97;"></span><span class="cell-full">●</span> capacidade plena</div>
+  <div class="legend-item"><span class="dot" style="background: #B5D4F4;"></span><span class="cell-own">◐</span> só sobre o que criou</div>
+  <div class="legend-item"><span class="dot" style="background: #FAC775;"></span><span class="cell-cond">○</span> condicional (ver nota)</div>
+  <div class="legend-item"><span class="dot" style="background: #F1EFE8;"></span><span class="cell-no">—</span> sem permissão</div>
+</div>
+
+<table class="matrix">
+  <colgroup>
+    <col style="width: 32%;">
+    <col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;">
+    <col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;">
+    <col style="width: 7%;"><col style="width: 6%;"><col style="width: 6%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <td></td>
+      <td colspan="3" class="col-group-head col-nodian">Nodian (staff global)</td>
+      <td colspan="4" class="col-group-head col-tenant">Empresa-cliente (tenant)</td>
+      <td colspan="3" class="col-group-head col-room">Sala</td>
+    </tr>
+    <tr>
+      <th style="text-align: left; padding-left: 10px;">Ação / Permissão</th>
+      <th class="role-head col-nodian">nodian_admin</th>
+      <th class="role-head col-nodian">nodian_operator</th>
+      <th class="role-head col-nodian">nodian_support</th>
+      <th class="role-head col-tenant">tenant_admin</th>
+      <th class="role-head col-tenant">editor</th>
+      <th class="role-head col-tenant">contributor</th>
+      <th class="role-head col-tenant">viewer</th>
+      <th class="role-head col-room">room_owner</th>
+      <th class="role-head col-room">room_member</th>
+      <th class="role-head col-room">room_guest</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr class="section-row"><td colspan="11">Plataforma e tenant</td></tr>
+    <tr>
+      <td class="action"><code>tenant.create</code> — criar nova empresa-cliente</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>tenant.settings.update</code> — configurações do tenant</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>member.invite</code> — adicionar pessoa ao tenant</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-cond">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>member.role.assign</code> — definir role de membro</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-cond">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>audit.read</code> — ler logs de auditoria</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+
+    <tr class="section-row"><td colspan="11">Resources (arquivos, refs)</td></tr>
+    <tr>
+      <td class="action"><code>file.create</code> — criar/upload arquivo no tenant</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>file.read</code> — ler arquivo</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
+      <td class="cell-cond">○</td><td class="cell-cond">○</td><td class="cell-cond">○</td>
+    </tr>
+    <tr>
+      <td class="action"><code>file.update</code> — editar conteúdo do arquivo</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>file.delete</code> — deletar arquivo</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>file.visibility.change</code> — alternar private↔tenant</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr class="pending">
+      <td class="action"><code>external_ref.create</code> — embedar Metabase/PowerBI/etc.</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-cond">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr class="pending">
+      <td class="action"><code>external_ref.origin.allowlist</code> — gerir origens permitidas</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-cond">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+
+    <tr class="section-row"><td colspan="11">Salas — criação e operação</td></tr>
+    <tr>
+      <td class="action"><code>room.create</code> — criar sala</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>room.update</code> — renomear, descrição, settings</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>room.member.invite</code> — convidar membro à sala</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>room.resource.add</code> — vincular resource à sala</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+    </tr>
+    <tr>
+      <td class="action"><code>room.resource.remove</code> — desvincular resource</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
+    </tr>
+
+    <tr class="section-row"><td colspan="11">Salas — ciclo de vida</td></tr>
+    <tr class="lifecycle">
+      <td class="action"><code>room.archive</code> — arquivar (congelar) sala</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr class="lifecycle">
+      <td class="action"><code>room.unarchive</code> — reabrir sala arquivada</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+    <tr class="lifecycle">
+      <td class="action"><code>room.delete</code> — deletar permanentemente</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
+    </tr>
+
+    <tr class="section-row"><td colspan="11">Interação (comentários, reações)</td></tr>
+    <tr>
+      <td class="action"><code>comment.create</code> — comentar em resource-na-sala</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
+    </tr>
+    <tr>
+      <td class="action"><code>comment.update</code> — editar próprio comentário</td>
+      <td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-no">—</td>
+      <td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-no">—</td>
+      <td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-own">◐</td>
+    </tr>
+    <tr>
+      <td class="action"><code>comment.delete</code> — remover comentário</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-own">◐</td>
+    </tr>
+    <tr>
+      <td class="action"><code>reaction.toggle</code> — like / reação</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+      <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="note frozen-rule">
+  <strong>Regra de sala arquivada (override global).</strong> Quando <code>archived_at</code> está preenchido, todas as permissões de <em>escrita</em> dentro da sala são bloqueadas para todos os roles, sem exceção — incluindo staff Nodian. Isso afeta <code>room.update</code>, <code>room.member.invite</code>, <code>room.resource.add</code>, <code>room.resource.remove</code>, <code>comment.create</code>, <code>comment.update</code>, <code>comment.delete</code> e <code>reaction.toggle</code>. As únicas ações ainda permitidas em sala arquivada são <code>file.read</code> (consulta histórica) e <code>room.unarchive</code> (reabrir). Pra qualquer outra edição, é preciso desarquivar primeiro — isso deixa o ato explícito e auditável.
+</div>
+
+<div class="note">
+  <strong>Notas de leitura.</strong>
+  <code>file.read</code> em sala: <span class="cell-cond">○</span> = depende do <code>visibility</code> do arquivo combinado com pertença à sala (sala como caminho adicional de acesso).
+  <code>member.invite</code> e <code>member.role.assign</code> em <code>tenant_admin</code>: <span class="cell-cond">○</span> = capacidade existe no modelo, mas no estado atual a Nodian centraliza criação de usuários.
+  <code>◐</code> em <code>contributor</code> = só sobre o que ele mesmo criou.
+  <code>◐</code> em comentários = só o próprio comentário.
+  Linhas em <strong style="color: #633806;">âmbar</strong> são as ações de <code>external_ref.*</code> em discussão. Linhas em <strong style="color: #3C3489;">roxo</strong> são as de ciclo de vida da sala.
+</div>
+
+</div>
