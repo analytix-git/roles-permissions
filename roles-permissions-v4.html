@@ -463,6 +463,29 @@ section.block{margin-bottom:80px}
 </section>
 
 <section class="block">
+  <div class="block-eyebrow">Operação da plataforma</div>
+  <h2 class="block-title">O <em>super_admin</em> não é um role do produto — é do deploy</h2>
+  <p class="block-lead">Criar tenants, provisionar infraestrutura, gerenciar billing — tudo isso fica <strong>fora do modelo de roles do produto</strong>. O <code>super_admin</code> é um papel de operação resolvido no deploy (CLI, painel interno, scripts de provisionamento). Não aparece na matriz, não passa pelo <code>can()</code>, não é um registro na tabela Role.</p>
+  <div class="insight-grid">
+    <div class="insight black">
+      <div class="insight-dot">1</div>
+      <div class="insight-label">SEPARAÇÃO CLARA</div>
+      <div class="insight-text"><strong>Produto ≠ infraestrutura.</strong> O produto resolve autorização de quem usa a plataforma. O deploy resolve quem cria e opera a plataforma. São domínios diferentes com ferramentas diferentes.</div>
+    </div>
+    <div class="insight amber">
+      <div class="insight-dot">2</div>
+      <div class="insight-label">RESPONSABILIDADES</div>
+      <div class="insight-text"><strong>O que o super_admin faz no deploy:</strong> cria tenants, define planos, configura integrações globais, provisiona o primeiro tenant_admin de cada empresa. Nada disso é feature do produto.</div>
+    </div>
+    <div class="insight green">
+      <div class="insight-dot">3</div>
+      <div class="insight-label">SEGURANÇA</div>
+      <div class="insight-text"><strong>Superfície de ataque mínima.</strong> super_admin nunca é exposto via API pública. Acesso via ferramentas internas com autenticação própria (SSH, painel admin, CI/CD).</div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
   <div class="block-eyebrow">Escopo Sala</div>
   <h2 class="block-title">Três roles de sala — que <em>somam</em> ao tenant, nunca substituem</h2>
   <p class="block-lead">Ser room_member dá <strong>acesso à sala</strong> e <strong>direito de interagir</strong> — mas nunca eleva capacidades acima do role de tenant. Sala adiciona escopo, não promove poder.</p>
@@ -1032,6 +1055,10 @@ section.block{margin-bottom:80px}
     <div class="closing-row">
       <div class="closing-key">Convite</div>
       <div class="closing-val">Auth methods por tenant · Multi-membership para consultores · Membership pending até aceite</div>
+    </div>
+    <div class="closing-row">
+      <div class="closing-key">Super_admin</div>
+      <div class="closing-val">Fora do modelo de roles — resolvido no deploy · Cria tenants, provisiona tenant_admin, gerencia infra</div>
     </div>
   </div>
   <div class="closing-cuidados">
