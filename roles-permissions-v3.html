@@ -207,11 +207,11 @@ section.block{margin-bottom:80px}
   <div class="hero-content">
     <div class="hero-eyebrow">Arquitetura · Plataforma Nodian</div>
     <h1 class="hero-title">Roles & permissões <em>v3</em><br><em>modelo revisado pelo backend</em></h1>
-    <p class="hero-sub">Permissões como entidade, roles por tenant, identidades multi-membership e tenant <code>_platform</code> como substituto do provider_access. Estrutura validada por backend sênior.</p>
+    <p class="hero-sub">Permissões M:N com roles, lifecycle na Membership, AuditLog modelado, tenant <code>_platform</code> com flag <code>type</code>, e decisões arquiteturais documentadas. Estrutura validada contra <code>django.contrib.auth</code>.</p>
     <div class="hero-meta">
-      <div class="meta-item"><div class="meta-item-lbl">Entidades</div><div class="meta-item-val">Permission · Role · Identity · Membership · Tenant · Room</div></div>
-      <div class="meta-item"><div class="meta-item-lbl">Princípio</div><div class="meta-item-val">Roles por tenant · Mecanismo único</div></div>
-      <div class="meta-item"><div class="meta-item-lbl">Status</div><div class="meta-item-val">v3 — revisão estrutural</div></div>
+      <div class="meta-item"><div class="meta-item-lbl">Entidades</div><div class="meta-item-val">Permission · Role · Identity · Membership · Tenant · Room · AuditLog</div></div>
+      <div class="meta-item"><div class="meta-item-lbl">Princípio</div><div class="meta-item-val">Permission M:N Role · Roles por tenant · Mecanismo único</div></div>
+      <div class="meta-item"><div class="meta-item-lbl">Status</div><div class="meta-item-val">v3 — validado contra Django</div></div>
     </div>
   </div>
 </header>
@@ -225,8 +225,8 @@ section.block{margin-bottom:80px}
   <div class="index-grid">
     <div class="index-card">
       <div class="index-num">01</div>
-      <div class="index-name">As seis entidades</div>
-      <div class="index-desc">Permission, Role, Identity, Membership, Tenant e Room</div>
+      <div class="index-name">As sete entidades</div>
+      <div class="index-desc">Permission, Role, Identity, Membership, Tenant, Room e AuditLog</div>
     </div>
     <div class="index-card">
       <div class="index-num">02</div>
@@ -264,23 +264,23 @@ section.block{margin-bottom:80px}
 <!-- ═══ BLOCK 01 — As seis entidades ═══ -->
 <div class="block-divider">
   <div class="block-divider-eyebrow">Bloco 01 de 07</div>
-  <div class="block-divider-title">As seis entidades</div>
+  <div class="block-divider-title">As sete entidades</div>
 </div>
 
 <section class="block">
   <div class="block-eyebrow">Fundamentos</div>
-  <h2 class="block-title">Seis entidades, um mecanismo único de autorização</h2>
-  <p class="block-lead">O modelo v3 separa <strong>Permission</strong>, <strong>Role</strong>, <strong>Identity</strong>, <strong>Membership</strong>, <strong>Tenant</strong> e <strong>Room</strong> como entidades independentes. Roles são definidos por tenant. Permissões são registros reais no banco, não constantes hardcoded.</p>
+  <h2 class="block-title">Sete entidades, um mecanismo único de autorização</h2>
+  <p class="block-lead">O modelo v3 separa <strong>Permission</strong>, <strong>Role</strong>, <strong>Identity</strong>, <strong>Membership</strong>, <strong>Tenant</strong> e <strong>Room</strong> como entidades independentes. Roles são definidos por tenant. Permissões são registros reais no banco vinculados a roles via relação <strong>M:N</strong> (tabela <code>role_permissions</code>).</p>
   <div class="insight-grid">
     <div class="insight lilac">
       <div class="insight-dot">1</div>
       <div class="insight-label">PERMISSION</div>
-      <div class="insight-text"><strong>Ação granular.</strong> Cada permissão é um registro no banco (ex: <code>file.create</code>, <code>room.archive</code>). Várias permissões pertencem a um Role. Relação N:1.</div>
+      <div class="insight-text"><strong>Ação granular.</strong> Cada permissão é um registro no banco (ex: <code>file.create</code>, <code>room.archive</code>) com campo <code>resource_type</code> para agrupamento. Vinculada a roles via tabela <code>role_permissions</code> (M:N). Uma permissão pode pertencer a vários roles sem duplicação.</div>
     </div>
     <div class="insight coral">
       <div class="insight-dot">2</div>
       <div class="insight-label">ROLE</div>
-      <div class="insight-text"><strong>Coleção nomeada de permissões.</strong> Definido por tenant — cada tenant pode ter roles customizados. Não é mais um enum global fixo.</div>
+      <div class="insight-text"><strong>Coleção nomeada de permissões.</strong> Definido por tenant — cada tenant pode ter roles customizados. Não é mais um enum global fixo. Possui <code>slug</code> (identificador estável para código) e <code>name</code> (label para UI).</div>
     </div>
     <div class="insight black">
       <div class="insight-dot">3</div>
@@ -290,37 +290,42 @@ section.block{margin-bottom:80px}
     <div class="insight amber">
       <div class="insight-dot">4</div>
       <div class="insight-label">MEMBERSHIP</div>
-      <div class="insight-text"><strong>A relação.</strong> Liga Identity a um Tenant com um Role. Constraint: <code>UNIQUE(identity_id, tenant_id)</code> — uma pessoa por tenant, mas pode estar em N tenants.</div>
+      <div class="insight-text"><strong>A relação.</strong> Liga Identity a um Tenant com um Role. Constraint: <code>UNIQUE(identity_id, tenant_id)</code> — uma pessoa por tenant, mas pode estar em N tenants. Campos de lifecycle: <code>status</code> (pending/active/suspended/deactivated), <code>invited_at</code>, <code>accepted_at</code>, <code>deactivated_at</code>, <code>invited_by</code>.</div>
     </div>
     <div class="insight green">
       <div class="insight-dot">5</div>
       <div class="insight-label">TENANT</div>
-      <div class="insight-text"><strong>A empresa-cliente (ou <code>_platform</code>).</strong> Fronteira de isolamento dos dados. O tenant <code>_platform</code> é onde staff Nodian tem membership — substituindo o antigo provider_access.</div>
+      <div class="insight-text"><strong>A empresa-cliente (ou <code>_platform</code>).</strong> Fronteira de isolamento dos dados. Campo <code>type</code> (<code>platform</code> | <code>client</code>) identifica o tenant especial. O tenant <code>_platform</code> é onde staff Nodian tem membership — substituindo o antigo provider_access.</div>
     </div>
     <div class="insight blue">
       <div class="insight-dot">6</div>
       <div class="insight-label">ROOM</div>
       <div class="insight-text"><strong>Espaço colaborativo dentro do tenant.</strong> Relação 1:N com Tenant. Room soma acesso contextual, nunca promove poder acima do tenant.</div>
     </div>
+    <div class="insight coral">
+      <div class="insight-dot">7</div>
+      <div class="insight-label">AUDITLOG</div>
+      <div class="insight-text"><strong>Registro imutável de cada ação.</strong> Campos: <code>identity_id</code>, <code>action</code>, <code>resource_type</code>, <code>resource_id</code>, <code>tenant_id</code>, <code>timestamp</code>, <code>metadata</code>. Acessos cross-tenant de staff são especialmente rastreados.</div>
+    </div>
   </div>
 </section>
 
 <!-- ER Diagram v3 -->
 <div class="diagram">
-  <div class="diagram-title">Modelo de entidades v3</div>
+  <div class="diagram-title">Modelo de entidades v3 — validado contra django.contrib.auth</div>
   <div class="er-diagram" style="flex-wrap:wrap;justify-content:center;gap:8px;min-width:900px">
     <div class="er-entity" style="border-color:#ab87bd;background:rgba(171,135,189,.06)">
       <div class="er-entity-name">Permission</div>
-      <div class="er-entity-desc">Ação granular<br>ex: file.create, room.archive</div>
+      <div class="er-entity-desc">Ação granular + resource_type<br>ex: file.create, room.archive</div>
     </div>
     <div class="er-connector">
-      <div class="er-connector-label">N : 1</div>
+      <div class="er-connector-label">M : N</div>
       <div class="er-connector-line"></div>
-      <div class="er-connector-note">várias permissions por role</div>
+      <div class="er-connector-note">via role_permissions</div>
     </div>
     <div class="er-entity er-entity--highlight">
       <div class="er-entity-name">Role</div>
-      <div class="er-entity-desc">Coleção de permissões<br>definido por tenant</div>
+      <div class="er-entity-desc">slug + name · permissões via M:N<br>definido por tenant</div>
     </div>
     <div class="er-connector">
       <div class="er-connector-label">N : 1</div>
@@ -329,7 +334,7 @@ section.block{margin-bottom:80px}
     </div>
     <div class="er-entity" style="border-color:#55b583;background:rgba(85,181,131,.06)">
       <div class="er-entity-name">Tenant</div>
-      <div class="er-entity-desc">Empresa-cliente ou _platform<br>fronteira de dados</div>
+      <div class="er-entity-desc">type: platform | client<br>fronteira de dados</div>
     </div>
     <div class="er-connector">
       <div class="er-connector-label">1 : N</div>
@@ -354,7 +359,7 @@ section.block{margin-bottom:80px}
     </div>
     <div class="er-entity er-entity--highlight">
       <div class="er-entity-name">Membership</div>
-      <div class="er-entity-desc">Identity + Tenant + Role<br>UNIQUE(identity_id, tenant_id)</div>
+      <div class="er-entity-desc">Identity + Tenant + Role<br>status · invited_at · accepted_at<br>UNIQUE(identity_id, tenant_id)</div>
     </div>
     <div class="er-connector">
       <div class="er-connector-label">N : 1</div>
@@ -368,6 +373,25 @@ section.block{margin-bottom:80px}
   </div>
   <div style="text-align:center;margin-top:20px;font-size:12px;color:#676767;font-weight:300">
     <span style="background:#fffbf2;border:1px solid #f6b359;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#8a5a00">Staff Nodian = membership no tenant _platform com role nodian_admin/operator/support</span>
+  </div>
+  <!-- Third row: AuditLog -->
+  <div class="er-diagram" style="margin-top:24px;flex-wrap:wrap;justify-content:center;gap:8px;min-width:500px">
+    <div class="er-entity" style="border-color:#e07b5a;background:rgba(224,123,90,.06)">
+      <div class="er-entity-name">AuditLog</div>
+      <div class="er-entity-desc">identity_id · action · resource_type<br>resource_id · tenant_id · timestamp · metadata</div>
+    </div>
+    <div class="er-connector">
+      <div class="er-connector-label">N : 1</div>
+      <div class="er-connector-line"></div>
+      <div class="er-connector-note">log por tenant</div>
+    </div>
+    <div class="er-entity" style="border-color:#55b583;background:rgba(85,181,131,.06)">
+      <div class="er-entity-name">Tenant</div>
+      <div class="er-entity-desc">(mesmo de cima)</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:16px;font-size:12px;color:#676767;font-weight:300">
+    <span style="background:#f5f5f5;border:1px solid #e0e0e0;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#676767">Decisão arquitetural: sem permissões diretas por Identity — tudo passa por Role. Alinhado com Django Groups, evita anti-pattern de user_permissions.</span>
   </div>
 </div>
 
@@ -582,7 +606,7 @@ section.block{margin-bottom:80px}
 <section class="block">
   <div class="block-eyebrow">Princípio da matriz</div>
   <h2 class="block-title">O código checa <em>permissões</em>, nunca roles diretamente</h2>
-  <p class="block-lead">Roles são coleções nomeadas de permissões, definidas por tenant. Isso permite adicionar um role novo amanhã sem caçar <strong>if role == 'editor'</strong> espalhado pelo código. A função <strong>can(user, action, resource)</strong> é o único ponto de decisão. Para staff, o <code>can()</code> faz fallback para membership no tenant <code>_platform</code>. Sala arquivada bloqueia toda escrita.</p>
+  <p class="block-lead">Roles são coleções nomeadas de permissões (M:N via <code>role_permissions</code>), definidas por tenant. Isso permite adicionar um role novo amanhã sem caçar <strong>if role == 'editor'</strong> espalhado pelo código. A função <strong>can(user, action, resource)</strong> é o único ponto de decisão. Para staff, o <code>can()</code> faz fallback para membership no tenant <code>_platform</code>. Sala arquivada bloqueia toda escrita.</p>
 
   <!-- Flowchart can() -->
   <div class="diagram" style="margin-top:28px">
@@ -1471,19 +1495,19 @@ section.block{margin-bottom:80px}
 
 <!-- ═══ CLOSING ═══ -->
 <div class="closing">
-  <h2 class="closing-headline">v3 — modelo revisado pelo backend</h2>
+  <h2 class="closing-headline">v3 — modelo validado contra Django</h2>
   <div class="closing-summary">
     <div class="closing-row">
       <div class="closing-key">Entidades</div>
-      <div class="closing-val">Permission · Role · Identity · Membership · Tenant · Room — seis entidades, um mecanismo</div>
+      <div class="closing-val">Permission · Role · Identity · Membership · Tenant · Room · AuditLog — sete entidades, um mecanismo</div>
     </div>
     <div class="closing-row">
       <div class="closing-key">Roles</div>
-      <div class="closing-val">Definidos por tenant · Permission como registros reais no banco · Customizáveis</div>
+      <div class="closing-val">Definidos por tenant · Permission M:N Role via role_permissions · slug + name · Customizáveis</div>
     </div>
     <div class="closing-row">
       <div class="closing-key">Identity</div>
-      <div class="closing-val">Multi-membership suportada · UNIQUE(identity_id, tenant_id) · Single-tenant como regra de negócio</div>
+      <div class="closing-val">Multi-membership suportada · UNIQUE(identity_id, tenant_id) · Lifecycle: status, invited_at, accepted_at</div>
     </div>
     <div class="closing-row">
       <div class="closing-key">Staff Nodian</div>
