@@ -431,8 +431,8 @@ section.block{margin-bottom:80px}
 
 <section class="block">
   <div class="block-eyebrow">Tenants-cliente</div>
-  <h2 class="block-title">Quatro roles padrão — customizáveis por tenant</h2>
-  <p class="block-lead">Cada tenant pode ter seus próprios roles com permissões customizadas. Os quatro abaixo são o <strong>template padrão</strong> criado quando um tenant é provisionado. O tenant_admin pode, no futuro, criar roles adicionais ou ajustar permissões.</p>
+  <h2 class="block-title">Cinco roles padrão — customizáveis por tenant</h2>
+  <p class="block-lead">Cada tenant pode ter seus próprios roles com permissões customizadas. Os cinco abaixo são o <strong>template padrão</strong> criado quando um tenant é provisionado. O tenant_admin pode, no futuro, criar roles adicionais ou ajustar permissões.</p>
   <div class="insight-grid">
     <div class="insight amber">
       <div class="insight-dot">1</div>
@@ -452,7 +452,12 @@ section.block{margin-bottom:80px}
     <div class="insight lilac">
       <div class="insight-dot">4</div>
       <div class="insight-label">VIEWER</div>
-      <div class="insight-text"><strong>Só lê.</strong> Não cria, não edita, não comenta fora de salas. Stakeholders e auditores ocasionais.</div>
+      <div class="insight-text"><strong>Só lê.</strong> Não cria, não edita, não comenta fora de salas. Stakeholders e auditores ocasionais. Vê arquivos públicos do tenant.</div>
+    </div>
+    <div class="insight coral">
+      <div class="insight-dot">5</div>
+      <div class="insight-label">GUEST</div>
+      <div class="insight-text"><strong>Zero visibilidade no tenant.</strong> Não vê arquivos públicos, não vê salas, não vê outros membros. Só acessa salas onde foi explicitamente adicionado como room_member ou room_guest. Caso de uso: médico consultor externo, auditor pontual, parceiro.</div>
     </div>
   </div>
 </section>
@@ -499,6 +504,34 @@ section.block{margin-bottom:80px}
       <div class="insight-dot">3</div>
       <div class="insight-label">ROOM_GUEST</div>
       <div class="insight-text"><strong>Consome e interage.</strong> Comenta, reage, mas não adiciona conteúdo. Stakeholders convidados pontualmente.</div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="block-eyebrow">Acesso externo</div>
+  <h2 class="block-title">Guest no tenant = <em>porta de entrada</em> para salas, nada mais</h2>
+  <p class="block-lead">Um médico consultor precisa ver os dashboards de uma sala específica, mas <strong>não é funcionário da empresa</strong>. Ele não deveria ver arquivos públicos, outras salas ou a lista de membros do tenant. O role <code>guest</code> resolve isso: membership real no tenant, mas com <strong>zero visibilidade fora das salas onde foi adicionado</strong>.</p>
+  <div class="insight-grid">
+    <div class="insight black">
+      <div class="insight-dot">1</div>
+      <div class="insight-label">O MODELO</div>
+      <div class="insight-text"><strong>Guest tem membership no tenant, mas não vê nada dele.</strong> Sem room role atribuído, o guest tem acesso a literalmente zero. O <code>can()</code> nega tudo no escopo tenant para guests.</div>
+    </div>
+    <div class="insight amber">
+      <div class="insight-dot">2</div>
+      <div class="insight-label">DOIS PASSOS</div>
+      <div class="insight-text"><strong>tenant_admin cria o guest.</strong> Depois, <strong>room_owner adiciona à sala</strong>. Separação clara: quem decide que o externo entra no tenant (admin) ≠ quem decide em qual sala ele participa (owner da sala).</div>
+    </div>
+    <div class="insight green">
+      <div class="insight-dot">3</div>
+      <div class="insight-label">VISIBILIDADE</div>
+      <div class="insight-text"><strong>Sala + perfis dos participantes.</strong> O guest vê o conteúdo vinculado à sala e os perfis básicos (nome, avatar) de quem está naquela sala. Nada mais.</div>
+    </div>
+    <div class="insight coral">
+      <div class="insight-dot">4</div>
+      <div class="insight-label">CASO DE USO</div>
+      <div class="insight-text"><strong>Médico consultor, auditor externo, parceiro.</strong> Pessoa que precisa de acesso pontual a um espaço específico sem fazer parte da organização. Membership guest pode ser desativada a qualquer momento pelo tenant_admin.</div>
     </div>
   </div>
 </section>
@@ -589,8 +622,8 @@ section.block{margin-bottom:80px}
 
   <!-- Single Matrix -->
   <div class="matrix-section">
-    <h3>Matriz de permissões — 7 roles</h3>
-    <p class="matrix-sub">tenant_admin ativo · Empresas convidam membros, criam salas e gerenciam ExternalRefs</p>
+    <h3>Matriz de permissões — 8 roles</h3>
+    <p class="matrix-sub">5 roles de tenant (incluindo guest) · 3 roles de sala</p>
 
     <div class="legend">
       <div class="legend-item"><span class="dot" style="background: #C0DD97;"></span><span class="cell-full">●</span> capacidade plena</div>
@@ -600,14 +633,14 @@ section.block{margin-bottom:80px}
     </div>
     <table class="matrix">
       <colgroup>
-        <col style="width: 35%;">
-        <col style="width: 9.3%;"><col style="width: 9.3%;"><col style="width: 9.3%;"><col style="width: 9.3%;">
-        <col style="width: 9.3%;"><col style="width: 9.3%;"><col style="width: 9.3%;">
+        <col style="width: 30%;">
+        <col style="width: 8.75%;"><col style="width: 8.75%;"><col style="width: 8.75%;"><col style="width: 8.75%;"><col style="width: 8.75%;">
+        <col style="width: 8.75%;"><col style="width: 8.75%;"><col style="width: 8.75%;">
       </colgroup>
       <thead>
         <tr>
           <td></td>
-          <td colspan="4" class="col-group-head col-tenant">Empresa-cliente (tenant)</td>
+          <td colspan="5" class="col-group-head col-tenant">Empresa-cliente (tenant)</td>
           <td colspan="3" class="col-group-head col-room">Sala</td>
         </tr>
         <tr>
@@ -616,141 +649,142 @@ section.block{margin-bottom:80px}
           <th class="role-head col-tenant">editor</th>
           <th class="role-head col-tenant">contributor</th>
           <th class="role-head col-tenant">viewer</th>
+          <th class="role-head col-tenant">guest</th>
           <th class="role-head col-room">room_owner</th>
           <th class="role-head col-room">room_member</th>
           <th class="role-head col-room">room_guest</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="section-row"><td colspan="8">Plataforma e tenant</td></tr>
+        <tr class="section-row"><td colspan="9">Plataforma e tenant</td></tr>
         <tr>
           <td class="action"><code>tenant.settings.update</code> — configurações do tenant</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>member.invite</code> — adicionar pessoa ao tenant</td>
-          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>member.role.assign</code> — definir role de membro</td>
-          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>audit.read</code> — ler logs de auditoria</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
-        <tr class="section-row"><td colspan="8">Autenticação do tenant</td></tr>
+        <tr class="section-row"><td colspan="9">Autenticação do tenant</td></tr>
         <tr>
           <td class="action"><code>tenant.auth_methods.manage</code> — ligar/desligar métodos de login</td>
-          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>tenant.auth_methods.read</code> — ver métodos habilitados</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
-        <tr class="section-row"><td colspan="8">Resources (arquivos, refs)</td></tr>
+        <tr class="section-row"><td colspan="9">Resources (arquivos, refs)</td></tr>
         <tr>
           <td class="action"><code>file.create</code> — criar/upload arquivo</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>file.read</code> — ler arquivo</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
           <td class="cell-cond col-room">○</td><td class="cell-cond col-room">○</td><td class="cell-cond col-room">○</td>
         </tr>
         <tr>
           <td class="action"><code>file.update</code> — editar arquivo</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>file.delete</code> — deletar arquivo</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>file.visibility.change</code> — alternar private↔tenant</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr class="pending">
           <td class="action"><code>external_ref.create</code> — embedar Metabase/PowerBI</td>
-          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr class="pending">
           <td class="action"><code>external_ref.origin.allowlist</code> — gerir origens</td>
-          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
-        <tr class="section-row"><td colspan="8">Salas — criação e operação</td></tr>
+        <tr class="section-row"><td colspan="9">Salas — criação e operação</td></tr>
         <tr>
           <td class="action"><code>room.create</code> — criar sala</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>room.update</code> — renomear, settings</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-full col-room">●</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>room.member.invite</code> — convidar à sala</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-full col-room">●</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>room.resource.add</code> — vincular resource</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-full col-room">●</td><td class="cell-full col-room">●</td><td class="cell-no col-room">—</td>
         </tr>
         <tr>
           <td class="action"><code>room.resource.remove</code> — desvincular resource</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-full col-room">●</td><td class="cell-own col-room">◐</td><td class="cell-no col-room">—</td>
         </tr>
-        <tr class="section-row"><td colspan="8">Salas — ciclo de vida</td></tr>
+        <tr class="section-row"><td colspan="9">Salas — ciclo de vida</td></tr>
         <tr class="lifecycle">
           <td class="action"><code>room.archive</code> — arquivar sala</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-full col-room">●</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr class="lifecycle">
           <td class="action"><code>room.unarchive</code> — reabrir sala</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-full col-room">●</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
         <tr class="lifecycle">
           <td class="action"><code>room.delete</code> — deletar sala</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-full col-room">●</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
         </tr>
-        <tr class="section-row"><td colspan="8">Interação</td></tr>
+        <tr class="section-row"><td colspan="9">Interação</td></tr>
         <tr>
           <td class="action"><code>comment.create</code> — comentar</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-full col-room">●</td><td class="cell-full col-room">●</td><td class="cell-full col-room">●</td>
         </tr>
         <tr>
           <td class="action"><code>comment.update</code> — editar comentário</td>
-          <td class="cell-own col-tenant">◐</td><td class="cell-own col-tenant">◐</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-own col-tenant">◐</td><td class="cell-own col-tenant">◐</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-own col-room">◐</td><td class="cell-own col-room">◐</td><td class="cell-own col-room">◐</td>
         </tr>
         <tr>
           <td class="action"><code>comment.delete</code> — remover comentário</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-full col-room">●</td><td class="cell-own col-room">◐</td><td class="cell-own col-room">◐</td>
         </tr>
         <tr>
           <td class="action"><code>reaction.toggle</code> — reagir</td>
-          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
           <td class="cell-full col-room">●</td><td class="cell-full col-room">●</td><td class="cell-full col-room">●</td>
         </tr>
       </tbody>
@@ -758,6 +792,7 @@ section.block{margin-bottom:80px}
 
     <div class="matrix-note frozen-rule"><strong>Regra congelada:</strong> quando <code>archived_at</code> está preenchido numa sala, toda operação de escrita nessa sala é recusada — independentemente do role. Apenas <code>room.unarchive</code> é permitido para roles com essa capacidade.</div>
     <div class="matrix-note"><strong>Como ler a matriz:</strong> ● = capacidade plena (pode agir sobre qualquer recurso no escopo); ◐ = só sobre o que criou (owner check); ○ = condicional (depende de configuração ou contexto adicional); — = sem permissão.</div>
+    <div class="matrix-note"><strong>Guest:</strong> coluna inteira é <strong>—</strong> no escopo tenant. O guest só tem acesso efetivo quando combinado com um room role (room_owner, room_member ou room_guest). Sem room role = acesso a nada.</div>
   </div>
 </section>
 
@@ -1033,7 +1068,7 @@ section.block{margin-bottom:80px}
     </div>
     <div class="closing-row">
       <div class="closing-key">Roles</div>
-      <div class="closing-val">Definidos por tenant · Permission M:N Role via role_permissions · slug + name · Customizáveis</div>
+      <div class="closing-val">5 tenant roles (admin, editor, contributor, viewer, guest) + 3 room roles · Permission M:N Role · Customizáveis</div>
     </div>
     <div class="closing-row">
       <div class="closing-key">Identity</div>
@@ -1042,6 +1077,10 @@ section.block{margin-bottom:80px}
     <div class="closing-row">
       <div class="closing-key">Isolamento</div>
       <div class="closing-val">Middleware + RLS + auditoria · Três defesas independentes</div>
+    </div>
+    <div class="closing-row">
+      <div class="closing-key">Guest</div>
+      <div class="closing-val">Membership no tenant sem visibilidade · Acesso só via room role · Dois passos: admin cria guest, owner adiciona à sala</div>
     </div>
     <div class="closing-row">
       <div class="closing-key">Pendente</div>
