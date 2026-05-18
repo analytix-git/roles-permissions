@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Roles & Permissões — Nodian</title>
+<title>Roles & Permissões v3 — Nodian</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"/>
@@ -206,12 +206,12 @@ section.block{margin-bottom:80px}
 <header class="hero">
   <div class="hero-content">
     <div class="hero-eyebrow">Arquitetura · Plataforma Nodian</div>
-    <h1 class="hero-title">Roles & permissões<br><em>do estado atual ao multi-tenant</em></h1>
-    <p class="hero-sub">Um modelo de autorização que funciona para uma empresa-cliente hoje, e escala para N empresas em 6 meses — sem reescrever a fundação.</p>
+    <h1 class="hero-title">Roles & permissões <em>v3</em><br><em>modelo revisado pelo backend</em></h1>
+    <p class="hero-sub">Permissões como entidade, roles por tenant, identidades multi-membership e tenant <code>_platform</code> como substituto do provider_access. Estrutura validada por backend sênior.</p>
     <div class="hero-meta">
-      <div class="meta-item"><div class="meta-item-lbl">Escopos</div><div class="meta-item-val">Nodian · Tenant · Sala</div></div>
-      <div class="meta-item"><div class="meta-item-lbl">Princípio</div><div class="meta-item-val">Isolamento por tenant</div></div>
-      <div class="meta-item"><div class="meta-item-lbl">Status</div><div class="meta-item-val">Pronto para discussão</div></div>
+      <div class="meta-item"><div class="meta-item-lbl">Entidades</div><div class="meta-item-val">Permission · Role · Identity · Membership · Tenant · Room</div></div>
+      <div class="meta-item"><div class="meta-item-lbl">Princípio</div><div class="meta-item-val">Roles por tenant · Mecanismo único</div></div>
+      <div class="meta-item"><div class="meta-item-lbl">Status</div><div class="meta-item-val">v3 — revisão estrutural</div></div>
     </div>
   </div>
 </header>
@@ -225,13 +225,13 @@ section.block{margin-bottom:80px}
   <div class="index-grid">
     <div class="index-card">
       <div class="index-num">01</div>
-      <div class="index-name">Os três escopos</div>
-      <div class="index-desc">Nodian, Tenant e Sala como fronteiras independentes</div>
+      <div class="index-name">As seis entidades</div>
+      <div class="index-desc">Permission, Role, Identity, Membership, Tenant e Room</div>
     </div>
     <div class="index-card">
       <div class="index-num">02</div>
-      <div class="index-name">Os roles</div>
-      <div class="index-desc">Dez roles em três escopos e o que representam</div>
+      <div class="index-name">Roles por tenant</div>
+      <div class="index-desc">Cada tenant define seus roles e permissões associadas</div>
     </div>
     <div class="index-card">
       <div class="index-num">03</div>
@@ -240,76 +240,96 @@ section.block{margin-bottom:80px}
     </div>
     <div class="index-card">
       <div class="index-num">04</div>
+      <div class="index-name">Convite & autenticação</div>
+      <div class="index-desc">Métodos de login por tenant e fluxo de convite</div>
+    </div>
+    <div class="index-card">
+      <div class="index-num">05</div>
       <div class="index-name">Estado atual</div>
       <div class="index-desc">Como opera com uma empresa</div>
     </div>
     <div class="index-card">
-      <div class="index-num">05</div>
+      <div class="index-num">06</div>
       <div class="index-name">Estado futuro</div>
       <div class="index-desc">Como escala para N empresas</div>
     </div>
     <div class="index-card">
-      <div class="index-num">06</div>
+      <div class="index-num">07</div>
       <div class="index-name">Decisões pendentes</div>
       <div class="index-desc">ExternalRef — três perguntas abertas</div>
     </div>
   </div>
 </section>
 
-<!-- ═══ BLOCK 01 — Os três escopos ═══ -->
+<!-- ═══ BLOCK 01 — As seis entidades ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 01 de 06</div>
-  <div class="block-divider-title">Os três escopos</div>
+  <div class="block-divider-eyebrow">Bloco 01 de 07</div>
+  <div class="block-divider-title">As seis entidades</div>
 </div>
 
 <section class="block">
   <div class="block-eyebrow">Fundamentos</div>
-  <h2 class="block-title">Tenant, identidade e membership: três coisas que não devem virar uma só</h2>
-  <p class="block-lead">O erro mais comum em sistemas como este é colapsar conceitos que precisam viver separados. <strong>Tenant</strong> é a fronteira de dados; <strong>identidade</strong> é a pessoa; <strong>membership</strong> é a relação.</p>
+  <h2 class="block-title">Seis entidades, um mecanismo único de autorização</h2>
+  <p class="block-lead">O modelo v3 separa <strong>Permission</strong>, <strong>Role</strong>, <strong>Identity</strong>, <strong>Membership</strong>, <strong>Tenant</strong> e <strong>Room</strong> como entidades independentes. Roles são definidos por tenant. Permissões são registros reais no banco, não constantes hardcoded.</p>
   <div class="insight-grid">
-    <div class="insight amber">
+    <div class="insight lilac">
       <div class="insight-dot">1</div>
-      <div class="insight-label">TENANT</div>
-      <div class="insight-text"><strong>A empresa-cliente.</strong> Fronteira de isolamento dos dados. Tudo que pertence à Empresa A vive dentro do tenant da Empresa A.</div>
-    </div>
-    <div class="insight black">
-      <div class="insight-dot">2</div>
-      <div class="insight-label">IDENTIDADE</div>
-      <div class="insight-text"><strong>Quem a pessoa é.</strong> Existe independentemente de qualquer tenant. Tem e-mail único, é a unidade da auditoria.</div>
+      <div class="insight-label">PERMISSION</div>
+      <div class="insight-text"><strong>Ação granular.</strong> Cada permissão é um registro no banco (ex: <code>file.create</code>, <code>room.archive</code>). Várias permissões pertencem a um Role. Relação N:1.</div>
     </div>
     <div class="insight coral">
+      <div class="insight-dot">2</div>
+      <div class="insight-label">ROLE</div>
+      <div class="insight-text"><strong>Coleção nomeada de permissões.</strong> Definido por tenant — cada tenant pode ter roles customizados. Não é mais um enum global fixo.</div>
+    </div>
+    <div class="insight black">
       <div class="insight-dot">3</div>
+      <div class="insight-label">IDENTITY</div>
+      <div class="insight-text"><strong>Quem a pessoa é.</strong> Existe independentemente de qualquer tenant. Tem e-mail único. Pode ter <strong>múltiplas memberships</strong> em tenants diferentes (1:N).</div>
+    </div>
+    <div class="insight amber">
+      <div class="insight-dot">4</div>
       <div class="insight-label">MEMBERSHIP</div>
-      <div class="insight-text"><strong>A relação com role.</strong> Liga identidade a um tenant com um papel específico. <strong>Regra: identidades-cliente têm no máximo uma membership ativa.</strong> Apenas staff Nodian cruza tenants via provider_access.</div>
+      <div class="insight-text"><strong>A relação.</strong> Liga Identity a um Tenant com um Role. Constraint: <code>UNIQUE(identity_id, tenant_id)</code> — uma pessoa por tenant, mas pode estar em N tenants.</div>
+    </div>
+    <div class="insight green">
+      <div class="insight-dot">5</div>
+      <div class="insight-label">TENANT</div>
+      <div class="insight-text"><strong>A empresa-cliente (ou <code>_platform</code>).</strong> Fronteira de isolamento dos dados. O tenant <code>_platform</code> é onde staff Nodian tem membership — substituindo o antigo provider_access.</div>
+    </div>
+    <div class="insight blue">
+      <div class="insight-dot">6</div>
+      <div class="insight-label">ROOM</div>
+      <div class="insight-text"><strong>Espaço colaborativo dentro do tenant.</strong> Relação 1:N com Tenant. Room soma acesso contextual, nunca promove poder acima do tenant.</div>
     </div>
   </div>
 </section>
 
-<!-- ER Diagram -->
+<!-- ER Diagram v3 -->
 <div class="diagram">
-  <div class="diagram-title">Modelo de entidades</div>
-  <div class="er-diagram">
-    <div class="er-entity">
-      <div class="er-entity-name">Identity</div>
-      <div class="er-entity-desc">Quem a pessoa é<br>e-mail único, imutável</div>
-    </div>
-    <div class="er-connector">
-      <div class="er-connector-label">1 : 1 🔒</div>
-      <div class="er-connector-line"></div>
-      <div class="er-connector-note">cliente: max 1 membership</div>
-    </div>
-    <div class="er-entity er-entity--highlight">
-      <div class="er-entity-name">Membership</div>
-      <div class="er-entity-desc">Relação + role<br>ativa ou desativada</div>
+  <div class="diagram-title">Modelo de entidades v3</div>
+  <div class="er-diagram" style="flex-wrap:wrap;justify-content:center;gap:8px;min-width:900px">
+    <div class="er-entity" style="border-color:#ab87bd;background:rgba(171,135,189,.06)">
+      <div class="er-entity-name">Permission</div>
+      <div class="er-entity-desc">Ação granular<br>ex: file.create, room.archive</div>
     </div>
     <div class="er-connector">
       <div class="er-connector-label">N : 1</div>
       <div class="er-connector-line"></div>
-      <div class="er-connector-note">vários membros por tenant</div>
+      <div class="er-connector-note">várias permissions por role</div>
     </div>
-    <div class="er-entity">
+    <div class="er-entity er-entity--highlight">
+      <div class="er-entity-name">Role</div>
+      <div class="er-entity-desc">Coleção de permissões<br>definido por tenant</div>
+    </div>
+    <div class="er-connector">
+      <div class="er-connector-label">N : 1</div>
+      <div class="er-connector-line"></div>
+      <div class="er-connector-note">role pertence a um tenant</div>
+    </div>
+    <div class="er-entity" style="border-color:#55b583;background:rgba(85,181,131,.06)">
       <div class="er-entity-name">Tenant</div>
-      <div class="er-entity-desc">Empresa-cliente<br>fronteira de dados</div>
+      <div class="er-entity-desc">Empresa-cliente ou _platform<br>fronteira de dados</div>
     </div>
     <div class="er-connector">
       <div class="er-connector-label">1 : N</div>
@@ -321,54 +341,61 @@ section.block{margin-bottom:80px}
       <div class="er-entity-desc">Espaço colaborativo<br>dentro do tenant</div>
     </div>
   </div>
-  <div style="text-align:center;margin-top:16px;font-size:12px;color:#676767;font-weight:300">
-    <span style="background:#fffbf2;border:1px solid #f6b359;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#8a5a00">Staff Nodian não tem membership — acessa tenants via provider_access (flag global na identidade)</span>
+  <!-- Second row: Identity → Membership → Role/Tenant -->
+  <div class="er-diagram" style="margin-top:24px;flex-wrap:wrap;justify-content:center;gap:8px;min-width:700px">
+    <div class="er-entity">
+      <div class="er-entity-name">Identity</div>
+      <div class="er-entity-desc">Quem a pessoa é<br>e-mail único</div>
+    </div>
+    <div class="er-connector">
+      <div class="er-connector-label">1 : N</div>
+      <div class="er-connector-line"></div>
+      <div class="er-connector-note">pode ter N memberships</div>
+    </div>
+    <div class="er-entity er-entity--highlight">
+      <div class="er-entity-name">Membership</div>
+      <div class="er-entity-desc">Identity + Tenant + Role<br>UNIQUE(identity_id, tenant_id)</div>
+    </div>
+    <div class="er-connector">
+      <div class="er-connector-label">N : 1</div>
+      <div class="er-connector-line"></div>
+      <div class="er-connector-note">membership referencia um role</div>
+    </div>
+    <div class="er-entity er-entity--highlight">
+      <div class="er-entity-name">Role</div>
+      <div class="er-entity-desc">(mesmo de cima)</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:20px;font-size:12px;color:#676767;font-weight:300">
+    <span style="background:#fffbf2;border:1px solid #f6b359;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#8a5a00">Staff Nodian = membership no tenant _platform com role nodian_admin/operator/support</span>
   </div>
 </div>
 
 <section class="block">
-  <div class="block-eyebrow">Camada Nodian</div>
-  <h2 class="block-title">Staff Nodian vive <em>acima</em> dos tenants — não dentro</h2>
-  <p class="block-lead">A Nodian não é uma empresa-cliente: vocês operam atravessando todos os tenants. Modelamos isso como uma <strong>marca na identidade</strong> — um atributo que concede provider_access cross-tenant com auditoria automática.</p>
-  <div class="insight-grid">
-    <div class="insight black">
-      <div class="insight-dot">1</div>
-      <div class="insight-label">DECISÃO ARQUITETURAL</div>
-      <div class="insight-text"><strong>Staff global, não super-tenant.</strong> A alternativa seria tratar Nodian como tenant especial. Staff global deixa a fronteira interno-vs-externo explícita no banco, na UI e na auditoria.</div>
-    </div>
-    <div class="insight amber">
-      <div class="insight-dot">2</div>
-      <div class="insight-label">CONSEQUÊNCIA</div>
-      <div class="insight-text"><strong>Identidade preservada, badge visível.</strong> Quando João da Nodian acessa o tenant da Empresa A, a identidade carrega '@ Nodian' na UI. O cliente sempre sabe quando alguém de fora tocou nos dados.</div>
-    </div>
-  </div>
-</section>
-
-<section class="block">
-  <div class="block-eyebrow">Espaço interno</div>
-  <h2 class="block-title">A Nodian também precisa de um <em>lugar seu</em> — e a resposta é simples</h2>
-  <p class="block-lead">Para dogfooding, docs internos e demos, a Nodian é tratada como <strong>um tenant normal</strong>. Staff ganha membership real no tenant <code>nodian-internal</code> além do provider_access que já tem.</p>
+  <div class="block-eyebrow">Tenant _platform</div>
+  <h2 class="block-title">Staff Nodian opera via <em>tenant _platform</em> — mecanismo único</h2>
+  <p class="block-lead">Na v2, staff usava <code>provider_access</code> (flag na Identity) para cruzar tenants. Na v3, isso foi eliminado. Staff Nodian tem <strong>membership no tenant <code>_platform</code></strong> com roles específicos. O <code>can()</code> faz fallback: se não encontra membership no tenant do recurso, checa membership no <code>_platform</code>.</p>
   <div class="insight-grid">
     <div class="insight amber">
       <div class="insight-dot">1</div>
-      <div class="insight-label">MODELO</div>
-      <div class="insight-text"><strong>Nodian como tenant.</strong> Mesmas regras, mesmas salas, mesmos roles. A diferença: identidades staff são as únicas que têm membership + provider_access simultâneos.</div>
+      <div class="insight-label">MECANISMO ÚNICO</div>
+      <div class="insight-text"><strong>Tudo é membership + role.</strong> Não existem dois caminhos de autorização. Staff e clientes usam o mesmo sistema — a diferença é em qual tenant têm membership.</div>
     </div>
     <div class="insight black">
       <div class="insight-dot">2</div>
-      <div class="insight-label">CONSTRAINT</div>
-      <div class="insight-text"><strong>Não viola single-tenant.</strong> A regra UNIQUE(identity_id) se aplica onde <code>provider_access = false</code>. Staff está fora desse filtro por definição.</div>
+      <div class="insight-label">CROSS-TENANT</div>
+      <div class="insight-text"><strong>Membership no _platform = acesso cross-tenant.</strong> O <code>can()</code> resolve: checa membership no tenant do recurso, e se não encontra, faz fallback para o _platform. Roles do _platform definem o nível de acesso.</div>
     </div>
     <div class="insight green">
       <div class="insight-dot">3</div>
-      <div class="insight-label">DOGFOODING</div>
-      <div class="insight-text"><strong>Vive a experiência real.</strong> Dentro do tenant Nodian, staff opera como tenant_admin/editor — sente as mesmas fricções e limites que os clientes sentem.</div>
+      <div class="insight-label">BADGE @ NODIAN</div>
+      <div class="insight-text"><strong>Mesma UX, mecanismo diferente.</strong> Em vez de checar <code>identity.provider_access</code>, checa <code>user tem membership no _platform?</code>. O badge continua aparecendo na UI.</div>
     </div>
   </div>
 
-  <!-- Diagram: Nodian tenant alongside clients -->
+  <!-- Diagram: _platform tenant alongside clients -->
   <div class="diagram">
-    <div class="diagram-title">Staff Nodian: dois acessos, um explícito por contexto</div>
+    <div class="diagram-title">Tenant _platform: staff Nodian no mesmo mecanismo</div>
     <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:16px 0;min-width:600px">
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
         <div style="background:#f5f5f5;border:1.5px solid #e0e0e0;border-radius:16px;padding:14px 18px;text-align:center">
@@ -383,42 +410,65 @@ section.block{margin-bottom:80px}
         </div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-        <div style="background:#fffbf2;border:1.5px solid #f6b359;border-radius:16px;padding:14px 18px;text-align:center">
-          <div style="font-size:13px;font-weight:600;color:#161616">Nodian</div>
-          <div style="font-size:10px;color:#8a5a00">tenant interno</div>
+        <div style="background:rgba(171,135,189,.1);border:1.5px solid rgba(171,135,189,.4);border-radius:16px;padding:14px 18px;text-align:center">
+          <div style="font-size:13px;font-weight:600;color:#161616">_platform</div>
+          <div style="font-size:10px;color:#7a5f8a">tenant de operação Nodian</div>
         </div>
       </div>
     </div>
     <div style="display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:12px">
       <div style="background:rgba(171,135,189,.08);border:1px solid rgba(171,135,189,.25);border-radius:12px;padding:10px 16px;font-size:11px;color:#676767;text-align:center">
-        <strong style="color:#161616">provider_access</strong><br>cruza A, B, Nodian<br><span style="font-size:10px;color:#8a5a00">auditado · badge @ Nodian</span>
+        <strong style="color:#161616">membership no _platform</strong><br>roles: nodian_admin, operator, support<br><span style="font-size:10px;color:#7a5f8a">cross-tenant automático · auditado · badge @ Nodian</span>
       </div>
       <div style="background:rgba(85,181,131,.08);border:1px solid rgba(85,181,131,.25);border-radius:12px;padding:10px 16px;font-size:11px;color:#676767;text-align:center">
-        <strong style="color:#161616">membership</strong><br>só no tenant Nodian<br><span style="font-size:10px;color:#2d7a50">role real · editor, admin, etc.</span>
+        <strong style="color:#161616">membership em tenant cliente</strong><br>roles definidos pelo tenant<br><span style="font-size:10px;color:#2d7a50">editor, contributor, viewer, etc.</span>
       </div>
     </div>
   </div>
 </section>
 
 <section class="block">
-  <div class="block-eyebrow">Restrição de isolamento</div>
-  <h2 class="block-title">Usuário-cliente pertence a <em>um único tenant</em> — sem exceções</h2>
-  <p class="block-lead">A separação entre identidade e membership permite tecnicamente múltiplas memberships. Mas para usuários de empresa-cliente, <strong>essa porta fica trancada</strong>: cada identidade não-staff pode ter no máximo uma membership ativa.</p>
+  <div class="block-eyebrow">Dogfooding</div>
+  <h2 class="block-title">A Nodian também precisa de um <em>lugar seu</em> — e o _platform resolve</h2>
+  <p class="block-lead">Para dogfooding, docs internos e demos, o tenant <code>_platform</code> funciona como espaço interno. Staff tem membership real com roles reais — mesmas regras, mesmas salas, mesmos limites que qualquer tenant.</p>
+  <div class="insight-grid">
+    <div class="insight amber">
+      <div class="insight-dot">1</div>
+      <div class="insight-label">MODELO</div>
+      <div class="insight-text"><strong>_platform como tenant.</strong> Mesmas regras, mesmas salas, mesmos roles. Staff opera como editor, admin, etc. dentro do _platform — e tem acesso cross-tenant por consequência do role.</div>
+    </div>
+    <div class="insight black">
+      <div class="insight-dot">2</div>
+      <div class="insight-label">SIMPLICIDADE</div>
+      <div class="insight-text"><strong>Um mecanismo para tudo.</strong> Não existe mais provider_access como campo especial na Identity. Tudo passa por membership + role + permission.</div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="block-eyebrow">Multi-membership</div>
+  <h2 class="block-title">Identidade pode pertencer a <em>múltiplos tenants</em> — com regras de negócio</h2>
+  <p class="block-lead">Na v2, cada identidade-cliente podia ter no máximo uma membership. Na v3, a constraint de banco é <code>UNIQUE(identity_id, tenant_id)</code> — uma pessoa não pode ter duas memberships <strong>no mesmo tenant</strong>, mas pode em tenants diferentes. A restrição single-tenant vira <strong>regra de negócio</strong>.</p>
   <div class="insight-grid">
     <div class="insight black">
       <div class="insight-dot">1</div>
       <div class="insight-label">A REGRA</div>
-      <div class="insight-text"><strong>Single-tenant por identidade-cliente.</strong> Se João é editor na Empresa A, ele não pode ter qualquer role na Empresa B. O sistema recusa o convite.</div>
+      <div class="insight-text"><strong>Single-tenant por padrão.</strong> Para a maioria dos usuários, o sistema limita a uma membership ativa. Mas a porta não está trancada no banco — a validação é na aplicação.</div>
     </div>
     <div class="insight amber">
       <div class="insight-dot">2</div>
-      <div class="insight-label">IMPLEMENTAÇÃO</div>
-      <div class="insight-text"><strong>Constraint no banco + validação no invite.</strong> UNIQUE(identity_id) na tabela de memberships para identidades sem flag staff. member.invite valida antes de criar.</div>
+      <div class="insight-label">CONSULTORES</div>
+      <div class="insight-text"><strong>Multi-tenant quando faz sentido.</strong> Consultores que atuam em duas empresas podem ter memberships em ambas — com roles diferentes em cada uma (ex: editor na Empresa A, viewer na Empresa B).</div>
+    </div>
+    <div class="insight green">
+      <div class="insight-dot">3</div>
+      <div class="insight-label">UX FLAT</div>
+      <div class="insight-text"><strong>Sem tenant selector.</strong> O usuário entra e vê todas as salas que tem acesso, de todos os tenants. O sistema agrupa internamente por tenant, mas a experiência é flat.</div>
     </div>
     <div class="insight coral">
-      <div class="insight-dot">3</div>
+      <div class="insight-dot">4</div>
       <div class="insight-label">TRANSFERÊNCIA</div>
-      <div class="insight-text"><strong>Desativa, não deleta.</strong> Se uma pessoa muda de empresa, membership antiga é desativada (preserva auditoria) e nova é criada no tenant destino.</div>
+      <div class="insight-text"><strong>Desativa, não deleta.</strong> Se uma pessoa sai de uma empresa, membership antiga é desativada (preserva auditoria) e nova pode ser criada no tenant destino.</div>
     </div>
   </div>
 </section>
@@ -428,7 +478,7 @@ section.block{margin-bottom:80px}
   <div class="diagram-title">Hierarquia de escopos — Room nunca eleva acima do Tenant</div>
   <div class="scope-nest">
     <div class="scope-box scope-box--platform">
-      <span class="scope-label scope-label--platform">Plataforma</span>
+      <span class="scope-label scope-label--platform">_platform</span>
       <div class="scope-box scope-box--tenant">
         <span class="scope-label scope-label--tenant">Tenant</span>
         <div class="scope-box scope-box--room">
@@ -443,39 +493,39 @@ section.block{margin-bottom:80px}
   </div>
 </div>
 
-<!-- ═══ BLOCK 02 — Os roles ═══ -->
+<!-- ═══ BLOCK 02 — Roles por tenant ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 02 de 06</div>
-  <div class="block-divider-title">Os roles</div>
+  <div class="block-divider-eyebrow">Bloco 02 de 07</div>
+  <div class="block-divider-title">Roles por tenant</div>
 </div>
 
 <section class="block">
-  <div class="block-eyebrow">Escopo Nodian</div>
-  <h2 class="block-title">Três níveis de staff — com propósitos distintos</h2>
-  <p class="block-lead">A divisão permite responder '<strong>quem da Nodian tocou nos dados?</strong>' separadamente de 'quem só consultou para investigar um problema?'.</p>
+  <div class="block-eyebrow">Tenant _platform</div>
+  <h2 class="block-title">Três roles de operação — no tenant <em>_platform</em></h2>
+  <p class="block-lead">Os roles de staff Nodian não são mais "globais" — são roles do tenant <code>_platform</code>. Cada um com permissões específicas registradas na tabela Permission. O <code>can()</code> faz fallback para o _platform quando não encontra membership no tenant do recurso.</p>
   <div class="insight-grid">
     <div class="insight black">
       <div class="insight-dot">1</div>
       <div class="insight-label">NODIAN_ADMIN</div>
-      <div class="insight-text"><strong>Opera a plataforma.</strong> Cria tenants, configura billing, gerencia integrações globais. Role mais raro.</div>
+      <div class="insight-text"><strong>Opera a plataforma.</strong> Cria tenants, configura billing, gerencia integrações globais. Role do _platform com permissões máximas. Role mais raro.</div>
     </div>
     <div class="insight amber">
       <div class="insight-dot">2</div>
       <div class="insight-label">NODIAN_OPERATOR</div>
-      <div class="insight-text"><strong>O dia-a-dia.</strong> Trabalha dentro dos tenants criando conteúdo, convidando membros, contribuindo. Quem 'permeia' as empresas.</div>
+      <div class="insight-text"><strong>O dia-a-dia.</strong> Trabalha dentro dos tenants criando conteúdo, convidando membros, contribuindo. Cross-tenant automático via fallback do _platform.</div>
     </div>
     <div class="insight blue">
       <div class="insight-dot">3</div>
       <div class="insight-label">NODIAN_SUPPORT</div>
-      <div class="insight-text"><strong>Read-only nos tenants.</strong> Investiga problemas, audita logs, consulta dados — sem risco de alteração.</div>
+      <div class="insight-text"><strong>Read-only nos tenants.</strong> Investiga problemas, audita logs, consulta dados — sem risco de alteração. Permissões de leitura apenas.</div>
     </div>
   </div>
 </section>
 
 <section class="block">
-  <div class="block-eyebrow">Escopo Tenant</div>
-  <h2 class="block-title">Quatro roles na empresa-cliente — do administrador ao leitor</h2>
-  <p class="block-lead">Definir os quatro agora custa quase nada e nos poupa migração depois. O <strong>tenant_admin fica dormente</strong> até as empresas ganharem autonomia.</p>
+  <div class="block-eyebrow">Tenants-cliente</div>
+  <h2 class="block-title">Quatro roles padrão — customizáveis por tenant</h2>
+  <p class="block-lead">Cada tenant pode ter seus próprios roles com permissões customizadas. Os quatro abaixo são o <strong>template padrão</strong> criado quando um tenant é provisionado. O tenant_admin pode, no futuro, criar roles adicionais ou ajustar permissões.</p>
   <div class="insight-grid">
     <div class="insight amber">
       <div class="insight-dot">1</div>
@@ -525,14 +575,14 @@ section.block{margin-bottom:80px}
 
 <!-- ═══ BLOCK 03 — A matriz ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 03 de 06</div>
+  <div class="block-divider-eyebrow">Bloco 03 de 07</div>
   <div class="block-divider-title">A matriz de permissões</div>
 </div>
 
 <section class="block">
   <div class="block-eyebrow">Princípio da matriz</div>
   <h2 class="block-title">O código checa <em>permissões</em>, nunca roles diretamente</h2>
-  <p class="block-lead">Roles são coleções nomeadas de permissões. Isso permite adicionar um role novo amanhã sem caçar <strong>if role == 'editor'</strong> espalhado pelo código. A função <strong>can(user, action, resource)</strong> é o único ponto de decisão. Sala arquivada bloqueia toda escrita. tenant_role + room_role = permissão efetiva — Room nunca eleva acima do tenant.</p>
+  <p class="block-lead">Roles são coleções nomeadas de permissões, definidas por tenant. Isso permite adicionar um role novo amanhã sem caçar <strong>if role == 'editor'</strong> espalhado pelo código. A função <strong>can(user, action, resource)</strong> é o único ponto de decisão. Para staff, o <code>can()</code> faz fallback para membership no tenant <code>_platform</code>. Sala arquivada bloqueia toda escrita.</p>
 
   <!-- Flowchart can() -->
   <div class="diagram" style="margin-top:28px">
@@ -608,16 +658,213 @@ section.block{margin-bottom:80px}
   </div>
 </section>
 
-<!-- ═══ BLOCK 04 — Estado atual ═══ -->
+<!-- ═══ BLOCK 04 — Convite & Autenticação ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 04 de 06</div>
+  <div class="block-divider-eyebrow">Bloco 04 de 07</div>
+  <div class="block-divider-title">Convite & autenticação por tenant</div>
+</div>
+
+<section class="block">
+  <div class="block-eyebrow">Identidade</div>
+  <h2 class="block-title">Como uma pessoa <em>entra</em> na plataforma — e por que isso depende do tenant</h2>
+  <p class="block-lead">Cada tenant pode ter métodos de login diferentes. Um hospital usa Microsoft SSO; uma consultoria prefere magic link. O convite precisa saber <strong>quais portas estão abertas</strong> antes de mandar o e-mail.</p>
+  <div class="insight-grid">
+    <div class="insight amber">
+      <div class="insight-dot">1</div>
+      <div class="insight-label">MICROSOFT SSO</div>
+      <div class="insight-text"><strong>Login federado via Entra ID.</strong> Ideal para empresas que já centralizam identidade na Microsoft. O usuário nunca cria senha na Nodian.</div>
+    </div>
+    <div class="insight black">
+      <div class="insight-dot">2</div>
+      <div class="insight-label">E-MAIL + SENHA</div>
+      <div class="insight-text"><strong>Credencial local clássica.</strong> O convidado cria uma senha na Nodian. Exige política de complexidade e rotação futura.</div>
+    </div>
+    <div class="insight coral">
+      <div class="insight-dot">3</div>
+      <div class="insight-label">E-MAIL + CÓDIGO</div>
+      <div class="insight-text"><strong>OTP enviado ao e-mail.</strong> Cada login gera um código de uso único. Sem senha para gerenciar, mas exige acesso ao e-mail a cada sessão.</div>
+    </div>
+    <div class="insight blue">
+      <div class="insight-dot">4</div>
+      <div class="insight-label">MAGIC LINK</div>
+      <div class="insight-text"><strong>Link de acesso único por e-mail.</strong> Um clique autentica. Experiência mais fluida, mas depende da segurança do e-mail do usuário.</div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="block-eyebrow">Configuração</div>
+  <h2 class="block-title">Métodos de login são <em>feature flags</em> no tenant — ligados ou desligados</h2>
+  <p class="block-lead">Cada tenant carrega uma lista de <strong>auth_methods habilitados</strong>. Novos métodos podem ser adicionados no futuro sem alterar o modelo — basta registrar um novo tipo e ligá-lo nos tenants desejados.</p>
+
+  <!-- ER Diagram: Tenant → auth methods -->
+  <div class="diagram">
+    <div class="diagram-title">Modelo — métodos de autenticação por tenant</div>
+    <div class="er-diagram">
+      <div class="er-entity er-entity--highlight">
+        <div class="er-entity-name">Tenant</div>
+        <div class="er-entity-desc">empresa-cliente<br>fronteira de dados</div>
+      </div>
+      <div class="er-connector">
+        <div class="er-connector-label">1 : N</div>
+        <div class="er-connector-line"></div>
+        <div class="er-connector-note">tenant habilita N métodos</div>
+      </div>
+      <div class="er-entity">
+        <div class="er-entity-name">TenantAuthMethod</div>
+        <div class="er-entity-desc">tipo + enabled + config<br>ex: {type: "microsoft_sso", enabled: true}</div>
+      </div>
+      <div class="er-connector">
+        <div class="er-connector-label">N : 1</div>
+        <div class="er-connector-line"></div>
+        <div class="er-connector-note">referencia tipo global</div>
+      </div>
+      <div class="er-entity">
+        <div class="er-entity-name">AuthMethodType</div>
+        <div class="er-entity-desc">catálogo de métodos<br>microsoft_sso · email_password<br>email_code · magic_link · ...</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:16px;font-size:12px;color:#676767;font-weight:300">
+      <span style="background:#fffbf2;border:1px solid #f6b359;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#8a5a00">Novos métodos entram no catálogo sem migração — basta criar TenantAuthMethod</span>
+    </div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight green">
+      <div class="insight-dot">1</div>
+      <div class="insight-label">EXTENSÍVEL</div>
+      <div class="insight-text"><strong>Catálogo aberto.</strong> SAML, Google SSO, passkeys — qualquer futuro método é uma nova linha no catálogo, sem alterar schema existente.</div>
+    </div>
+    <div class="insight black">
+      <div class="insight-dot">2</div>
+      <div class="insight-label">MÍNIMO UM ATIVO</div>
+      <div class="insight-text"><strong>Constraint de sanidade.</strong> Tenant precisa ter pelo menos um auth_method enabled. Sem isso, ninguém consegue entrar.</div>
+    </div>
+    <div class="insight amber">
+      <div class="insight-dot">3</div>
+      <div class="insight-label">QUEM CONFIGURA</div>
+      <div class="insight-text"><strong>Hoje: nodian_admin / nodian_operator.</strong> Futuro: tenant_admin poderá ligar/desligar métodos dentro do que Nodian disponibilizar para seu plano.</div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="block-eyebrow">Fluxo de convite</div>
+  <h2 class="block-title">O caminho do convite — de <em>member.invite</em> até o primeiro login</h2>
+  <p class="block-lead">O convite por e-mail é o início da jornada. Mas o que o convidado vê ao clicar no link <strong>depende dos métodos habilitados no tenant</strong>.</p>
+
+  <!-- Flowchart: Invite flow -->
+  <div class="diagram">
+    <div class="diagram-title">Fluxo de convite — member.invite até autenticação</div>
+    <div class="flowchart">
+      <div class="fc-node fc-node--start"><span class="fc-code">member.invite(email, tenant, role)</span></div>
+      <div class="fc-arrow"></div>
+      <div class="fc-node fc-node--decision">Identidade já existe?</div>
+      <div class="fc-arrow"></div>
+      <div class="fc-branch">
+        <div class="fc-branch-arm">
+          <div class="fc-branch-label">SIM</div>
+          <div class="fc-node fc-node--decision">Já tem membership neste tenant?</div>
+          <div class="fc-arrow"></div>
+          <div class="fc-branch">
+            <div class="fc-branch-arm">
+              <div class="fc-branch-label">SIM</div>
+              <div class="fc-node fc-node--deny">REJEITA — UNIQUE(identity, tenant)</div>
+            </div>
+            <div class="fc-branch-arm">
+              <div class="fc-branch-label">NÃO</div>
+              <div class="fc-node fc-node--process">Cria membership (status: <strong>pending</strong>)</div>
+              <div class="fc-arrow"></div>
+              <div class="fc-node fc-node--process">Envia e-mail de convite</div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-branch-arm">
+          <div class="fc-branch-label">NÃO</div>
+          <div class="fc-node fc-node--process">Cria identidade + membership (<strong>pending</strong>)</div>
+          <div class="fc-arrow"></div>
+          <div class="fc-node fc-node--process">Envia e-mail de convite</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diagram">
+    <div class="diagram-title">O que acontece quando o convidado clica no link</div>
+    <div class="flowchart">
+      <div class="fc-node fc-node--start">Convidado clica no link do e-mail</div>
+      <div class="fc-arrow"></div>
+      <div class="fc-node fc-node--process">Sistema resolve o <strong>tenant</strong> a partir do token do convite</div>
+      <div class="fc-arrow"></div>
+      <div class="fc-node fc-node--process">Busca <strong>auth_methods habilitados</strong> no tenant</div>
+      <div class="fc-arrow"></div>
+      <div class="fc-node fc-node--decision">Quantos métodos ativos?</div>
+      <div class="fc-arrow"></div>
+      <div class="fc-branch">
+        <div class="fc-branch-arm">
+          <div class="fc-branch-label">UM</div>
+          <div class="fc-node fc-node--process">Redireciona direto para o fluxo daquele método</div>
+        </div>
+        <div class="fc-branch-arm">
+          <div class="fc-branch-label">VÁRIOS</div>
+          <div class="fc-node fc-node--process">Mostra tela de escolha:<br>"Como deseja entrar?"</div>
+        </div>
+      </div>
+      <div class="fc-arrow"></div>
+      <div class="fc-node fc-node--process">Usuário completa autenticação pelo método escolhido</div>
+      <div class="fc-arrow"></div>
+      <div class="fc-node fc-node--allow">Membership ativada → acesso ao tenant</div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="block-eyebrow">Regras e cuidados</div>
+  <h2 class="block-title">O que o fluxo de convite <em>precisa garantir</em></h2>
+  <div class="insight-grid">
+    <div class="insight black">
+      <div class="insight-dot">1</div>
+      <div class="insight-label">TOKEN COM ESCOPO</div>
+      <div class="insight-text"><strong>O link de convite carrega tenant + identity + role.</strong> Validade curta (ex: 72h). Expirou? Precisa reenviar. Token nunca expõe dados do tenant no URL — só um ID opaco.</div>
+    </div>
+    <div class="insight amber">
+      <div class="insight-dot">2</div>
+      <div class="insight-label">MEMBERSHIP PENDING</div>
+      <div class="insight-text"><strong>Convite aceito ≠ membership imediata.</strong> A membership nasce como <code>pending</code> e só vira <code>active</code> após o convidado completar a autenticação. Isso evita membros-fantasma.</div>
+    </div>
+    <div class="insight coral">
+      <div class="insight-dot">3</div>
+      <div class="insight-label">MÉTODO DESABILITADO</div>
+      <div class="insight-text"><strong>Se o tenant desabilitar um método após o convite</strong>, o convidado ainda consegue aceitar — desde que reste pelo menos um método ativo. O link resolve métodos no momento do clique, não no momento do envio.</div>
+    </div>
+    <div class="insight green">
+      <div class="insight-dot">4</div>
+      <div class="insight-label">REENVIO SEGURO</div>
+      <div class="insight-text"><strong>Reenviar convite invalida o token anterior.</strong> Apenas o último token é válido. Evita que links antigos circulem.</div>
+    </div>
+    <div class="insight blue">
+      <div class="insight-dot">5</div>
+      <div class="insight-label">AUDITORIA</div>
+      <div class="insight-text"><strong>Tudo logado.</strong> Quem convidou, quando, qual método foi usado para aceitar, IP, user-agent. O audit trail do convite é tão importante quanto o do acesso.</div>
+    </div>
+    <div class="insight lilac">
+      <div class="insight-dot">6</div>
+      <div class="insight-label">SSO MANDATÓRIO</div>
+      <div class="insight-text"><strong>Tenant pode forçar SSO exclusivo.</strong> Se Microsoft SSO é o único método ativo, não há escolha — o convidado é redirecionado direto para o fluxo Microsoft. Isso atende requisitos de compliance corporativo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOCK 05 — Estado atual ═══ -->
+<div class="block-divider">
+  <div class="block-divider-eyebrow">Bloco 05 de 07</div>
   <div class="block-divider-title">Estado atual</div>
 </div>
 
 <section class="block">
   <div class="block-eyebrow">Modelo centralizado</div>
   <h2 class="block-title">Hoje a Nodian é a única produtora — e isso cabe no modelo sem ajustes</h2>
-  <p class="block-lead">Tudo funciona no estado atual sem over-engineering. O tenant existe mesmo que vazio; <strong>tenant_admin existe mas fica desligado</strong>; staff Nodian aparece como '@ Nodian' na UI.</p>
+  <p class="block-lead">Tudo funciona no estado atual sem over-engineering. O tenant existe mesmo que vazio; <strong>tenant_admin existe mas fica desligado</strong>; staff Nodian opera via membership no tenant <code>_platform</code> com badge '@ Nodian' na UI.</p>
   <div class="insight-grid">
     <div class="insight amber">
       <div class="insight-dot">1</div>
@@ -627,7 +874,7 @@ section.block{margin-bottom:80px}
     <div class="insight black">
       <div class="insight-dot">2</div>
       <div class="insight-label">CONTEÚDO</div>
-      <div class="insight-text"><strong>Staff Nodian como operator.</strong> nodian_operator entra nos tenants e cria arquivos, salas, external refs.</div>
+      <div class="insight-text"><strong>Staff via _platform.</strong> nodian_operator (role no _platform) entra nos tenants via fallback do can() e cria arquivos, salas, external refs.</div>
     </div>
     <div class="insight green">
       <div class="insight-dot">3</div>
@@ -637,7 +884,7 @@ section.block{margin-bottom:80px}
     <div class="insight blue">
       <div class="insight-dot">4</div>
       <div class="insight-label">ISOLAMENTO</div>
-      <div class="insight-text"><strong>Já funciona.</strong> Cada cliente só vê seu tenant. Staff cruza com auditoria.</div>
+      <div class="insight-text"><strong>Já funciona.</strong> Cada cliente só vê seu tenant. Staff cruza via _platform com auditoria.</div>
     </div>
   </div>
 </section>
@@ -654,7 +901,7 @@ section.block{margin-bottom:80px}
     <div class="diff-summary-header">Atual (1 empresa)</div>
     <div class="diff-summary-header">Futuro (N empresas)</div>
     <div class="diff-cell">Quem convida membros</div>
-    <div class="diff-cell diff-cell--dormant">Só Nodian (operator)</div>
+    <div class="diff-cell diff-cell--dormant">Só Nodian (_platform operator)</div>
     <div class="diff-cell">tenant_admin da empresa</div>
     <div class="diff-cell">tenant_admin</div>
     <div class="diff-cell diff-cell--dormant">Dormente — ninguém tem</div>
@@ -695,7 +942,7 @@ section.block{margin-bottom:80px}
         <thead>
           <tr>
             <td></td>
-            <td colspan="3" class="col-group-head col-nodian">Nodian (staff global)</td>
+            <td colspan="3" class="col-group-head col-nodian">Nodian (_platform)</td>
             <td colspan="4" class="col-group-head col-tenant">Empresa-cliente (tenant)</td>
             <td colspan="3" class="col-group-head col-room">Sala</td>
           </tr>
@@ -737,10 +984,23 @@ section.block{margin-bottom:80px}
             <td class="action"><code>member.role.assign</code> — definir role de membro</td>
             <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
             <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+             <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+           </tr>
+          <tr>
+            <td class="action"><code>audit.read</code> — ler logs de auditoria</td>
+            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
+            <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+          </tr>
+          <tr class="section-row"><td colspan="11">Autenticação do tenant</td></tr>
+          <tr>
+            <td class="action"><code>tenant.auth_methods.manage</code> — ligar/desligar métodos de login</td>
+            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+            <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
             <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
           </tr>
           <tr>
-            <td class="action"><code>audit.read</code> — ler logs de auditoria</td>
+            <td class="action"><code>tenant.auth_methods.read</code> — ver métodos habilitados</td>
             <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
             <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
             <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
@@ -868,7 +1128,7 @@ section.block{margin-bottom:80px}
 
       <div class="matrix-note frozen-rule"><strong>Regra congelada:</strong> quando <code>archived_at</code> está preenchido numa sala, toda operação de escrita nessa sala é recusada — independentemente do role. Apenas <code>room.unarchive</code> é permitido para roles com essa capacidade.</div>
       <div class="matrix-note"><strong>Como ler a matriz:</strong> ● = capacidade plena (pode agir sobre qualquer recurso no escopo); ◐ = só sobre o que criou (owner check); ○ = condicional (depende de configuração ou contexto adicional); — = sem permissão.</div>
-      <div class="matrix-note"><strong>Nota:</strong> No estado atual, <code>tenant_admin</code> existe no schema mas nenhuma pessoa tem esse role atribuído. <code>member.invite</code> e <code>member.role.assign</code> são operados exclusivamente pela Nodian.</div>
+      <div class="matrix-note"><strong>Nota:</strong> No estado atual, <code>tenant_admin</code> existe no schema mas nenhuma pessoa tem esse role atribuído. <code>member.invite</code> e <code>member.role.assign</code> são operados exclusivamente pela Nodian via membership no tenant <code>_platform</code>.</div>
     </div><!-- /compare-layer (before) -->
 
     <!-- AFTER layer (estado futuro) — overlaid -->
@@ -893,7 +1153,7 @@ section.block{margin-bottom:80px}
         <thead>
           <tr>
             <td></td>
-            <td colspan="3" class="col-group-head col-nodian">Nodian (staff global)</td>
+            <td colspan="3" class="col-group-head col-nodian">Nodian (_platform)</td>
             <td colspan="4" class="col-group-head col-tenant">Empresa-cliente (tenant)</td>
             <td colspan="3" class="col-group-head col-room">Sala</td>
           </tr>
@@ -939,6 +1199,19 @@ section.block{margin-bottom:80px}
           </tr>
           <tr>
             <td class="action"><code>audit.read</code> — ler logs de auditoria</td>
+            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
+            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+          </tr>
+          <tr class="section-row"><td colspan="11">Autenticação do tenant</td></tr>
+          <tr>
+            <td class="action"><code>tenant.auth_methods.manage</code> — ligar/desligar métodos de login</td>
+            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
+            <td class="cell-cond">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
+          </tr>
+          <tr>
+            <td class="action"><code>tenant.auth_methods.read</code> — ver métodos habilitados</td>
             <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
             <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
             <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
@@ -1076,7 +1349,7 @@ section.block{margin-bottom:80px}
 
 <!-- ═══ BLOCK 05 — Estado futuro ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 05 de 06</div>
+  <div class="block-divider-eyebrow">Bloco 06 de 07</div>
   <div class="block-divider-title">Estado futuro</div>
 </div>
 
@@ -1102,8 +1375,8 @@ section.block{margin-bottom:80px}
     </div>
     <div class="insight coral">
       <div class="insight-dot">4</div>
-      <div class="insight-label">SINGLE-TENANT</div>
-      <div class="insight-text"><strong>Regra preservada.</strong> Mesmo com autonomia, identidade-cliente continua restrita a um único tenant.</div>
+      <div class="insight-label">MULTI-MEMBERSHIP</div>
+      <div class="insight-text"><strong>Consultores suportados.</strong> Identidades podem ter memberships em múltiplos tenants. Single-tenant é regra de negócio, não constraint de banco.</div>
     </div>
   </div>
 </section>
@@ -1121,7 +1394,7 @@ section.block{margin-bottom:80px}
     <div class="insight black">
       <div class="insight-dot">2</div>
       <div class="insight-label">BANCO</div>
-      <div class="insight-text"><strong>Row-Level Security no Postgres.</strong> Policies recusam servir linha de outro tenant. Staff Nodian tem bypass auditado.</div>
+      <div class="insight-text"><strong>Row-Level Security no Postgres.</strong> Policies recusam servir linha de outro tenant. Staff com membership no _platform tem bypass auditado.</div>
     </div>
     <div class="insight coral">
       <div class="insight-dot">3</div>
@@ -1133,7 +1406,7 @@ section.block{margin-bottom:80px}
 
 <!-- ═══ BLOCK 06 — Decisões pendentes ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 06 de 06</div>
+  <div class="block-divider-eyebrow">Bloco 07 de 07</div>
   <div class="block-divider-title">Decisões pendentes</div>
 </div>
 
@@ -1198,19 +1471,23 @@ section.block{margin-bottom:80px}
 
 <!-- ═══ CLOSING ═══ -->
 <div class="closing">
-  <h2 class="closing-headline">Uma fundação que aguenta o hoje e o amanhã</h2>
+  <h2 class="closing-headline">v3 — modelo revisado pelo backend</h2>
   <div class="closing-summary">
     <div class="closing-row">
-      <div class="closing-key">Fundação</div>
-      <div class="closing-val">Tenant, identidade e membership separados · Staff Nodian como marca global</div>
-    </div>
-    <div class="closing-row">
-      <div class="closing-key">Identidade</div>
-      <div class="closing-val">Single-tenant para clientes · Cada identidade não-staff tem no máximo uma membership ativa</div>
+      <div class="closing-key">Entidades</div>
+      <div class="closing-val">Permission · Role · Identity · Membership · Tenant · Room — seis entidades, um mecanismo</div>
     </div>
     <div class="closing-row">
       <div class="closing-key">Roles</div>
-      <div class="closing-val">10 roles em 3 escopos · Sala soma acesso, nunca eleva poder</div>
+      <div class="closing-val">Definidos por tenant · Permission como registros reais no banco · Customizáveis</div>
+    </div>
+    <div class="closing-row">
+      <div class="closing-key">Identity</div>
+      <div class="closing-val">Multi-membership suportada · UNIQUE(identity_id, tenant_id) · Single-tenant como regra de negócio</div>
+    </div>
+    <div class="closing-row">
+      <div class="closing-key">Staff Nodian</div>
+      <div class="closing-val">Membership no tenant _platform · provider_access eliminado · Mecanismo único para tudo</div>
     </div>
     <div class="closing-row">
       <div class="closing-key">Isolamento</div>
@@ -1223,6 +1500,10 @@ section.block{margin-bottom:80px}
     <div class="closing-row">
       <div class="closing-key">Pendente</div>
       <div class="closing-val">Três decisões sobre ExternalRef · Quem cria, allowlist, revisão</div>
+    </div>
+    <div class="closing-row">
+      <div class="closing-key">Convite</div>
+      <div class="closing-val">Auth methods por tenant · Multi-membership para consultores · Membership pending até aceite</div>
     </div>
   </div>
   <div class="closing-cuidados">
