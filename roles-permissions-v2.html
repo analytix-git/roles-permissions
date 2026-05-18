@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Roles & Permissões v3 — Nodian</title>
+<title>Roles & Permissões v4 — Nodian</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"/>
@@ -17,7 +17,7 @@ code{font-family:'Poppins',monospace;font-weight:500;background:#fff;padding:2px
 
 /* Brand Corner */
 .brand-corner{position:fixed;top:22px;left:28px;z-index:50;display:flex;align-items:center;gap:10px;pointer-events:none}
-.brand-corner-logo{width:80px;height:auto;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%203142.05%20603.91%22%3E%3Cpolygon%20fill%3D%22%23161616%22%20points%3D%22369.31%2065.01%20312.5%2065.01%20312.5%20443.79%2058.84%2065.01%200%2065.01%200%20538.46%2056.81%20538.46%2056.81%20159.71%20310.46%20538.46%20369.31%20538.46%20369.31%2065.01%22%2F%3E%3Cpath%20fill%3D%22%23161616%22%20d%3D%22M1458.69%2C65.01h-135.94v473.45h135.94c146.78%2C0%2C234.04-100.11%2C234.04-236.71s-87.26-236.74-234.04-236.74ZM1379.56%2C484.35V119.11h75.76c115.65%2C0%2C176.53%2C81.86%2C176.53%2C182.63s-60.88%2C182.61-176.53%2C182.61h-75.76Z%22%2F%3E%3Cpolygon%20fill%3D%22%23161616%22%20points%3D%221959.93%2065.01%201903.12%2065.01%201903.12%20538.46%201959.93%20538.46%201959.93%2065.01%22%2F%3E%3Cpath%20fill%3D%22%23161616%22%20d%3D%22M2387.4%2C65.01h-52.74l-186.01%2C473.45h60.88l49.37-127.83h204.26l49.37%2C127.83h59.54l-184.67-473.45ZM2279.88%2C356.52l81.16-210.36%2C81.16%2C210.36h-162.32Z%22%2F%3E%3Cpolygon%20fill%3D%22%23161616%22%20points%3D%223137.5%2065.01%203080.68%2065.01%203080.68%20443.79%202827.03%2065.01%202768.19%2065.01%202768.19%20538.46%202825.03%20538.46%202825.03%20159.71%203078.65%20538.46%203137.5%20538.46%203137.5%2065.01%22%2F%3E%3Cpath%20fill%3D%22%23161616%22%20d%3D%22M846.03%2C0c-166.77%2C0-301.95%2C135.19-301.95%2C301.96s135.19%2C301.96%2C301.95%2C301.96%2C301.96-135.19%2C301.96-301.96S1012.8%2C0%2C846.03%2C0ZM846.03%2C42.35c99.77%2C0%2C186.52%2C56.6%2C229.97%2C139.35-55.39-40-137.83-65.41-229.97-65.41s-174.58%2C25.41-229.97%2C65.41c43.45-82.75%2C130.2-139.35%2C229.97-139.35ZM846.03%2C331.64c109.69%2C0%2C205.6-5.82%2C257.97-14.51-4.49%2C21.23-19.96%2C51.33-66.64%2C80.04-50.45%2C31.02-118.4%2C48.11-191.34%2C48.11s-140.88-17.08-191.33-48.11c-46.68-28.7-62.15-58.81-66.64-80.04%2C52.37%2C8.69%2C148.28%2C14.51%2C257.97%2C14.51ZM588.06%2C286.78c4.49-21.23%2C19.96-51.33%2C66.64-80.04%2C50.45-31.02%2C118.4-48.11%2C191.33-48.11s140.88%2C17.08%2C191.34%2C48.11c46.68%2C28.7%2C62.15%2C58.81%2C66.64%2C80.04-52.37-8.69-148.28-14.51-257.97-14.51s-205.6%2C5.82-257.97%2C14.51ZM846.03%2C561.57c-99.77%2C0-186.52-56.6-229.97-139.35%2C55.39%2C40%2C137.83%2C65.41%2C229.97%2C65.41s174.58-25.41%2C229.97-65.41c-43.45%2C82.75-130.2%2C139.35-229.97%2C139.35Z%22%2F%3E%3C%2Fsvg%3E") no-repeat center / contain;display:block;height:20px}
+.brand-corner-logo{width:80px;height:auto;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%203142.05%20603.91%22%3E%3Cpolygon%20fill%3D%22%23161616%22%20points%3D%22369.31%2065.01%20312.5%2065.01%20312.5%20443.79%2058.84%2065.01%200%2065.01%200%20538.46%2056.81%20538.46%2056.81%20159.71%20310.46%20538.46%20369.31%20538.46%20369.31%2065.01%22%2F%3E%3Cpath%20fill%3D%22%23161616%22%20d%3D%22M1458.69%2C65.01h-135.94v473.45h135.94c146.78%2C0%2C234.04-100.11%2C234.04-236.71s-87.26-236.74-234.04-236.74ZM1379.56%2C484.35V119.11h75.76c115.65%2C0%2C176.53%2C81.86%2C176.53%2C182.63s-60.88%2C182.61-176.53%2C182.61h-75.76Z%22%2F%3E%3Cpolygon%20fill%3D%22%23161616%22%20points%3D%221959.93%2065.01%201903.12%2065.01%201903.12%20538.46%201959.93%20538.46%201959.93%2065.01%22%2F%3E%3Cpath%20fill%3D%22%23161616%22%20d%3D%22M2387.4%2C65.01h-52.74l-186.01%2C473.45h60.88l49.37-127.83h204.26l49.37%2C127.83h59.54l-184.67-473.45ZM2279.88%2C356.52l81.16-210.36%2C81.16%2C210.36h-162.32Z%22%2F%3E%3Cpolygon%20fill%3D%22%23161616%22%20points%3D%223137.5%2065.01%203080.68%2065.01%203080.68%20443.79%202827.03%2065.01%202768.19%2065.01%202768.19%20538.46%202825.03%20538.46%202825.03%20159.71%203078.65%20538.46%203137.5%20538.46%203137.5%2065.01%22%2F%3E%3Cpath%20fill%3D%22%23161616%22%20d%3D%22M846.03%2C0c-166.77%2C0-301.95%2C135.19-301.95%2C301.96s135.19%2C301.96%2C301.95%2C301.96%2C301.96-135.19%2C301.96-301.96S1012.8%2C0%2C846.03%2C0ZM846.03%2C42.35c99.77%2C0%2C186.52%2C56.6%2C229.97%2C139.35-55.39-40-137.83-65.41-229.97-65.41s-174.58%2C25.41-229.97%2C65.41c43.45-82.75%2C130.2-139.35%2C229.97-139.35ZM846.03%2C331.64c109.69%2C0%2C205.6-5.82%2C257.97-14.51-4.49%2C21.23-19.96%2C51.33-66.64%2C80.04-50.45%2C31.02-118.4%2C48.11-191.34%2C48.11s-140.88-17.08-191.33-48.11c-46.68-28.7-62.15-58.81-66.64-80.04%2C52.37%2C8.69%2C148.28%2C14.51%2C257.97%2C14.51ZM588.06%2C286.78c4.49-21.23%2C19.96-51.33%2C66.64-80.04%2C50.45-31.02%2C118.4-48.11%2C191.33-48.11s140.88%2C17.08%2C191.34%2C48.11c46.68%2C28.7%2C62.15%2C58.81%2C66.64%2C80.04-52.37-8.69-148.28-14.51-257.97-14.51s-205.6%2C5.82-257.97%2C14.51ZM846.03%2C561.56c-99.77%2C0-186.52-56.6-229.97-139.35%2C55.39%2C40%2C137.83%2C65.41%2C229.97%2C65.41s174.58-25.41%2C229.97-65.41c-43.45%2C82.75-130.2%2C139.35-229.97%2C139.35Z%22%2F%3E%3C%2Fsvg%3E") no-repeat center / contain}
 
 /* Page Container */
 .page-container{max-width:1100px;margin:0 auto;padding:0 40px 120px}
@@ -206,12 +206,12 @@ section.block{margin-bottom:80px}
 <header class="hero">
   <div class="hero-content">
     <div class="hero-eyebrow">Arquitetura · Plataforma Nodian</div>
-    <h1 class="hero-title">Roles & permissões <em>v3</em><br><em>modelo revisado pelo backend</em></h1>
-    <p class="hero-sub">Permissões M:N com roles, lifecycle na Membership, AuditLog modelado, tenant <code>_platform</code> com flag <code>type</code>, e decisões arquiteturais documentadas. Estrutura validada contra <code>django.contrib.auth</code>.</p>
+    <h1 class="hero-title">Roles & permissões <em>v4</em><br><em>modelo simplificado</em></h1>
+    <p class="hero-sub">Permissões M:N com roles, lifecycle na Membership, AuditLog modelado, roles por tenant e decisões arquiteturais documentadas.</p>
     <div class="hero-meta">
       <div class="meta-item"><div class="meta-item-lbl">Entidades</div><div class="meta-item-val">Permission · Role · Identity · Membership · Tenant · Room · AuditLog</div></div>
-      <div class="meta-item"><div class="meta-item-lbl">Princípio</div><div class="meta-item-val">Permission M:N Role · Roles por tenant · Mecanismo único</div></div>
-      <div class="meta-item"><div class="meta-item-lbl">Status</div><div class="meta-item-val">v3 — validado contra Django</div></div>
+      <div class="meta-item"><div class="meta-item-lbl">Princípio</div><div class="meta-item-val">Permission M:N Role · Roles por tenant</div></div>
+      <div class="meta-item"><div class="meta-item-lbl">Status</div><div class="meta-item-val">v4 — modelo simplificado</div></div>
     </div>
   </div>
 </header>
@@ -245,32 +245,22 @@ section.block{margin-bottom:80px}
     </div>
     <div class="index-card">
       <div class="index-num">05</div>
-      <div class="index-name">Estado atual</div>
-      <div class="index-desc">Como opera com uma empresa</div>
-    </div>
-    <div class="index-card">
-      <div class="index-num">06</div>
-      <div class="index-name">Estado futuro</div>
-      <div class="index-desc">Como escala para N empresas</div>
-    </div>
-    <div class="index-card">
-      <div class="index-num">07</div>
       <div class="index-name">Decisões pendentes</div>
       <div class="index-desc">ExternalRef — três perguntas abertas</div>
     </div>
   </div>
 </section>
 
-<!-- ═══ BLOCK 01 — As seis entidades ═══ -->
+<!-- ═══ BLOCK 01 — As sete entidades ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 01 de 07</div>
+  <div class="block-divider-eyebrow">Bloco 01 de 05</div>
   <div class="block-divider-title">As sete entidades</div>
 </div>
 
 <section class="block">
   <div class="block-eyebrow">Fundamentos</div>
   <h2 class="block-title">Sete entidades, um mecanismo único de autorização</h2>
-  <p class="block-lead">O modelo v3 separa <strong>Permission</strong>, <strong>Role</strong>, <strong>Identity</strong>, <strong>Membership</strong>, <strong>Tenant</strong> e <strong>Room</strong> como entidades independentes. Roles são definidos por tenant. Permissões são registros reais no banco vinculados a roles via relação <strong>M:N</strong> (tabela <code>role_permissions</code>).</p>
+  <p class="block-lead">O modelo v4 separa <strong>Permission</strong>, <strong>Role</strong>, <strong>Identity</strong>, <strong>Membership</strong>, <strong>Tenant</strong> e <strong>Room</strong> como entidades independentes. Roles são definidos por tenant. Permissões são registros reais no banco vinculados a roles via relação <strong>M:N</strong> (tabela <code>role_permissions</code>).</p>
   <div class="insight-grid">
     <div class="insight lilac">
       <div class="insight-dot">1</div>
@@ -295,7 +285,7 @@ section.block{margin-bottom:80px}
     <div class="insight green">
       <div class="insight-dot">5</div>
       <div class="insight-label">TENANT</div>
-      <div class="insight-text"><strong>A empresa-cliente (ou <code>_platform</code>).</strong> Fronteira de isolamento dos dados. Campo <code>type</code> (<code>platform</code> | <code>client</code>) identifica o tenant especial. O tenant <code>_platform</code> é onde staff Nodian tem membership — substituindo o antigo provider_access.</div>
+      <div class="insight-text"><strong>A empresa-cliente.</strong> Fronteira de isolamento dos dados. Campo <code>type</code> para categorização.</div>
     </div>
     <div class="insight blue">
       <div class="insight-dot">6</div>
@@ -305,14 +295,15 @@ section.block{margin-bottom:80px}
     <div class="insight coral">
       <div class="insight-dot">7</div>
       <div class="insight-label">AUDITLOG</div>
-      <div class="insight-text"><strong>Registro imutável de cada ação.</strong> Campos: <code>identity_id</code>, <code>action</code>, <code>resource_type</code>, <code>resource_id</code>, <code>tenant_id</code>, <code>timestamp</code>, <code>metadata</code>. Acessos cross-tenant de staff são especialmente rastreados.</div>
+      <div class="insight-text"><strong>Registro imutável de cada ação.</strong> Campos: <code>identity_id</code>, <code>action</code>, <code>resource_type</code>, <code>resource_id</code>, <code>tenant_id</code>, <code>timestamp</code>, <code>metadata</code>.</div>
     </div>
   </div>
 </section>
 
-<!-- ER Diagram v3 -->
+<!-- ER Diagram v4 -->
 <div class="diagram">
-  <div class="diagram-title">Modelo de entidades v3 — validado contra django.contrib.auth</div>
+  <div class="diagram-title">Modelo de entidades v4</div>
+  <!-- Row 1: Permission → Role → Tenant → Room -->
   <div class="er-diagram" style="flex-wrap:wrap;justify-content:center;gap:8px;min-width:900px">
     <div class="er-entity" style="border-color:#ab87bd;background:rgba(171,135,189,.06)">
       <div class="er-entity-name">Permission</div>
@@ -334,7 +325,7 @@ section.block{margin-bottom:80px}
     </div>
     <div class="er-entity" style="border-color:#55b583;background:rgba(85,181,131,.06)">
       <div class="er-entity-name">Tenant</div>
-      <div class="er-entity-desc">type: platform | client<br>fronteira de dados</div>
+      <div class="er-entity-desc">empresa-cliente<br>fronteira de dados</div>
     </div>
     <div class="er-connector">
       <div class="er-connector-label">1 : N</div>
@@ -346,7 +337,7 @@ section.block{margin-bottom:80px}
       <div class="er-entity-desc">Espaço colaborativo<br>dentro do tenant</div>
     </div>
   </div>
-  <!-- Second row: Identity → Membership → Role/Tenant -->
+  <!-- Row 2: Identity → Membership → Role -->
   <div class="er-diagram" style="margin-top:24px;flex-wrap:wrap;justify-content:center;gap:8px;min-width:700px">
     <div class="er-entity">
       <div class="er-entity-name">Identity</div>
@@ -372,9 +363,9 @@ section.block{margin-bottom:80px}
     </div>
   </div>
   <div style="text-align:center;margin-top:20px;font-size:12px;color:#676767;font-weight:300">
-    <span style="background:#fffbf2;border:1px solid #f6b359;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#8a5a00">Staff Nodian = membership no tenant _platform com role nodian_admin/operator/support</span>
+    <span style="background:#f5f5f5;border:1px solid #e0e0e0;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#676767">Decisão: sem permissões diretas por Identity — tudo passa por Role</span>
   </div>
-  <!-- Third row: AuditLog -->
+  <!-- Row 3: AuditLog → Tenant -->
   <div class="er-diagram" style="margin-top:24px;flex-wrap:wrap;justify-content:center;gap:8px;min-width:500px">
     <div class="er-entity" style="border-color:#e07b5a;background:rgba(224,123,90,.06)">
       <div class="er-entity-name">AuditLog</div>
@@ -390,89 +381,29 @@ section.block{margin-bottom:80px}
       <div class="er-entity-desc">(mesmo de cima)</div>
     </div>
   </div>
-  <div style="text-align:center;margin-top:16px;font-size:12px;color:#676767;font-weight:300">
-    <span style="background:#f5f5f5;border:1px solid #e0e0e0;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#676767">Decisão arquitetural: sem permissões diretas por Identity — tudo passa por Role. Alinhado com Django Groups, evita anti-pattern de user_permissions.</span>
+</div>
+
+<!-- Scope Nesting Diagram -->
+<div class="diagram">
+  <div class="diagram-title">Hierarquia de escopos — Room nunca eleva acima do Tenant</div>
+  <div class="scope-nest">
+    <div class="scope-box scope-box--tenant">
+      <span class="scope-label scope-label--tenant">Tenant</span>
+      <div class="scope-box scope-box--room">
+        <span class="scope-label scope-label--room">Room</span>
+        <div style="font-size:11px;color:#676767;text-align:center;padding:8px 12px">
+          Permissão efetiva =<br><strong style="color:#161616">min(tenant_cap, room_cap)</strong>
+        </div>
+      </div>
+    </div>
+    <div class="scope-rule">Room soma acesso contextual, nunca promove poder</div>
   </div>
 </div>
 
 <section class="block">
-  <div class="block-eyebrow">Tenant _platform</div>
-  <h2 class="block-title">Staff Nodian opera via <em>tenant _platform</em> — mecanismo único</h2>
-  <p class="block-lead">Na v2, staff usava <code>provider_access</code> (flag na Identity) para cruzar tenants. Na v3, isso foi eliminado. Staff Nodian tem <strong>membership no tenant <code>_platform</code></strong> com roles específicos. O <code>can()</code> faz fallback: se não encontra membership no tenant do recurso, checa membership no <code>_platform</code>.</p>
-  <div class="insight-grid">
-    <div class="insight amber">
-      <div class="insight-dot">1</div>
-      <div class="insight-label">MECANISMO ÚNICO</div>
-      <div class="insight-text"><strong>Tudo é membership + role.</strong> Não existem dois caminhos de autorização. Staff e clientes usam o mesmo sistema — a diferença é em qual tenant têm membership.</div>
-    </div>
-    <div class="insight black">
-      <div class="insight-dot">2</div>
-      <div class="insight-label">CROSS-TENANT</div>
-      <div class="insight-text"><strong>Membership no _platform = acesso cross-tenant.</strong> O <code>can()</code> resolve: checa membership no tenant do recurso, e se não encontra, faz fallback para o _platform. Roles do _platform definem o nível de acesso.</div>
-    </div>
-    <div class="insight green">
-      <div class="insight-dot">3</div>
-      <div class="insight-label">BADGE @ NODIAN</div>
-      <div class="insight-text"><strong>Mesma UX, mecanismo diferente.</strong> Em vez de checar <code>identity.provider_access</code>, checa <code>user tem membership no _platform?</code>. O badge continua aparecendo na UI.</div>
-    </div>
-  </div>
-
-  <!-- Diagram: _platform tenant alongside clients -->
-  <div class="diagram">
-    <div class="diagram-title">Tenant _platform: staff Nodian no mesmo mecanismo</div>
-    <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:16px 0;min-width:600px">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-        <div style="background:#f5f5f5;border:1.5px solid #e0e0e0;border-radius:16px;padding:14px 18px;text-align:center">
-          <div style="font-size:13px;font-weight:600;color:#161616">Empresa A</div>
-          <div style="font-size:10px;color:#676767">tenant cliente</div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-        <div style="background:#f5f5f5;border:1.5px solid #e0e0e0;border-radius:16px;padding:14px 18px;text-align:center">
-          <div style="font-size:13px;font-weight:600;color:#161616">Empresa B</div>
-          <div style="font-size:10px;color:#676767">tenant cliente</div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-        <div style="background:rgba(171,135,189,.1);border:1.5px solid rgba(171,135,189,.4);border-radius:16px;padding:14px 18px;text-align:center">
-          <div style="font-size:13px;font-weight:600;color:#161616">_platform</div>
-          <div style="font-size:10px;color:#7a5f8a">tenant de operação Nodian</div>
-        </div>
-      </div>
-    </div>
-    <div style="display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:12px">
-      <div style="background:rgba(171,135,189,.08);border:1px solid rgba(171,135,189,.25);border-radius:12px;padding:10px 16px;font-size:11px;color:#676767;text-align:center">
-        <strong style="color:#161616">membership no _platform</strong><br>roles: nodian_admin, operator, support<br><span style="font-size:10px;color:#7a5f8a">cross-tenant automático · auditado · badge @ Nodian</span>
-      </div>
-      <div style="background:rgba(85,181,131,.08);border:1px solid rgba(85,181,131,.25);border-radius:12px;padding:10px 16px;font-size:11px;color:#676767;text-align:center">
-        <strong style="color:#161616">membership em tenant cliente</strong><br>roles definidos pelo tenant<br><span style="font-size:10px;color:#2d7a50">editor, contributor, viewer, etc.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="block">
-  <div class="block-eyebrow">Dogfooding</div>
-  <h2 class="block-title">A Nodian também precisa de um <em>lugar seu</em> — e o _platform resolve</h2>
-  <p class="block-lead">Para dogfooding, docs internos e demos, o tenant <code>_platform</code> funciona como espaço interno. Staff tem membership real com roles reais — mesmas regras, mesmas salas, mesmos limites que qualquer tenant.</p>
-  <div class="insight-grid">
-    <div class="insight amber">
-      <div class="insight-dot">1</div>
-      <div class="insight-label">MODELO</div>
-      <div class="insight-text"><strong>_platform como tenant.</strong> Mesmas regras, mesmas salas, mesmos roles. Staff opera como editor, admin, etc. dentro do _platform — e tem acesso cross-tenant por consequência do role.</div>
-    </div>
-    <div class="insight black">
-      <div class="insight-dot">2</div>
-      <div class="insight-label">SIMPLICIDADE</div>
-      <div class="insight-text"><strong>Um mecanismo para tudo.</strong> Não existe mais provider_access como campo especial na Identity. Tudo passa por membership + role + permission.</div>
-    </div>
-  </div>
-</section>
-
-<section class="block">
   <div class="block-eyebrow">Multi-membership</div>
   <h2 class="block-title">Identidade pode pertencer a <em>múltiplos tenants</em> — com regras de negócio</h2>
-  <p class="block-lead">Na v2, cada identidade-cliente podia ter no máximo uma membership. Na v3, a constraint de banco é <code>UNIQUE(identity_id, tenant_id)</code> — uma pessoa não pode ter duas memberships <strong>no mesmo tenant</strong>, mas pode em tenants diferentes. A restrição single-tenant vira <strong>regra de negócio</strong>.</p>
+  <p class="block-lead">A constraint de banco é <code>UNIQUE(identity_id, tenant_id)</code> — uma pessoa não pode ter duas memberships <strong>no mesmo tenant</strong>, mas pode em tenants diferentes. A restrição single-tenant vira <strong>regra de negócio</strong>.</p>
   <div class="insight-grid">
     <div class="insight black">
       <div class="insight-dot">1</div>
@@ -484,67 +415,19 @@ section.block{margin-bottom:80px}
       <div class="insight-label">CONSULTORES</div>
       <div class="insight-text"><strong>Multi-tenant quando faz sentido.</strong> Consultores que atuam em duas empresas podem ter memberships em ambas — com roles diferentes em cada uma (ex: editor na Empresa A, viewer na Empresa B).</div>
     </div>
-    <div class="insight green">
-      <div class="insight-dot">3</div>
-      <div class="insight-label">UX FLAT</div>
-      <div class="insight-text"><strong>Sem tenant selector.</strong> O usuário entra e vê todas as salas que tem acesso, de todos os tenants. O sistema agrupa internamente por tenant, mas a experiência é flat.</div>
-    </div>
     <div class="insight coral">
-      <div class="insight-dot">4</div>
+      <div class="insight-dot">3</div>
       <div class="insight-label">TRANSFERÊNCIA</div>
       <div class="insight-text"><strong>Desativa, não deleta.</strong> Se uma pessoa sai de uma empresa, membership antiga é desativada (preserva auditoria) e nova pode ser criada no tenant destino.</div>
     </div>
   </div>
 </section>
 
-<!-- Scope Nesting Diagram -->
-<div class="diagram">
-  <div class="diagram-title">Hierarquia de escopos — Room nunca eleva acima do Tenant</div>
-  <div class="scope-nest">
-    <div class="scope-box scope-box--platform">
-      <span class="scope-label scope-label--platform">_platform</span>
-      <div class="scope-box scope-box--tenant">
-        <span class="scope-label scope-label--tenant">Tenant</span>
-        <div class="scope-box scope-box--room">
-          <span class="scope-label scope-label--room">Room</span>
-          <div style="font-size:11px;color:#676767;text-align:center;padding:8px 12px">
-            Permissão efetiva =<br><strong style="color:#161616">min(tenant_cap, room_cap)</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="scope-rule">Room soma acesso contextual, nunca promove poder</div>
-  </div>
-</div>
-
 <!-- ═══ BLOCK 02 — Roles por tenant ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 02 de 07</div>
+  <div class="block-divider-eyebrow">Bloco 02 de 05</div>
   <div class="block-divider-title">Roles por tenant</div>
 </div>
-
-<section class="block">
-  <div class="block-eyebrow">Tenant _platform</div>
-  <h2 class="block-title">Três roles de operação — no tenant <em>_platform</em></h2>
-  <p class="block-lead">Os roles de staff Nodian não são mais "globais" — são roles do tenant <code>_platform</code>. Cada um com permissões específicas registradas na tabela Permission. O <code>can()</code> faz fallback para o _platform quando não encontra membership no tenant do recurso.</p>
-  <div class="insight-grid">
-    <div class="insight black">
-      <div class="insight-dot">1</div>
-      <div class="insight-label">NODIAN_ADMIN</div>
-      <div class="insight-text"><strong>Opera a plataforma.</strong> Cria tenants, configura billing, gerencia integrações globais. Role do _platform com permissões máximas. Role mais raro.</div>
-    </div>
-    <div class="insight amber">
-      <div class="insight-dot">2</div>
-      <div class="insight-label">NODIAN_OPERATOR</div>
-      <div class="insight-text"><strong>O dia-a-dia.</strong> Trabalha dentro dos tenants criando conteúdo, convidando membros, contribuindo. Cross-tenant automático via fallback do _platform.</div>
-    </div>
-    <div class="insight blue">
-      <div class="insight-dot">3</div>
-      <div class="insight-label">NODIAN_SUPPORT</div>
-      <div class="insight-text"><strong>Read-only nos tenants.</strong> Investiga problemas, audita logs, consulta dados — sem risco de alteração. Permissões de leitura apenas.</div>
-    </div>
-  </div>
-</section>
 
 <section class="block">
   <div class="block-eyebrow">Tenants-cliente</div>
@@ -554,7 +437,7 @@ section.block{margin-bottom:80px}
     <div class="insight amber">
       <div class="insight-dot">1</div>
       <div class="insight-label">TENANT_ADMIN</div>
-      <div class="insight-text"><strong>Gerencia a empresa.</strong> Convida membros, define roles, configura integrações. Dormente hoje — ativado quando empresas tiverem autonomia.</div>
+      <div class="insight-text"><strong>Gerencia a empresa.</strong> Convida membros, define roles, configura integrações, gerencia métodos de autenticação.</div>
     </div>
     <div class="insight green">
       <div class="insight-dot">2</div>
@@ -570,6 +453,29 @@ section.block{margin-bottom:80px}
       <div class="insight-dot">4</div>
       <div class="insight-label">VIEWER</div>
       <div class="insight-text"><strong>Só lê.</strong> Não cria, não edita, não comenta fora de salas. Stakeholders e auditores ocasionais.</div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="block-eyebrow">Operação da plataforma</div>
+  <h2 class="block-title">O <em>super_admin</em> não é um role do produto — é do deploy</h2>
+  <p class="block-lead">Criar tenants, provisionar infraestrutura, gerenciar billing — tudo isso fica <strong>fora do modelo de roles do produto</strong>. O <code>super_admin</code> é um papel de operação resolvido no deploy (CLI, painel interno, scripts de provisionamento). Não aparece na matriz, não passa pelo <code>can()</code>, não é um registro na tabela Role.</p>
+  <div class="insight-grid">
+    <div class="insight black">
+      <div class="insight-dot">1</div>
+      <div class="insight-label">SEPARAÇÃO CLARA</div>
+      <div class="insight-text"><strong>Produto ≠ infraestrutura.</strong> O produto resolve autorização de quem usa a plataforma. O deploy resolve quem cria e opera a plataforma. São domínios diferentes com ferramentas diferentes.</div>
+    </div>
+    <div class="insight amber">
+      <div class="insight-dot">2</div>
+      <div class="insight-label">RESPONSABILIDADES</div>
+      <div class="insight-text"><strong>O que o super_admin faz no deploy:</strong> cria tenants, define planos, configura integrações globais, provisiona o primeiro tenant_admin de cada empresa. Nada disso é feature do produto.</div>
+    </div>
+    <div class="insight green">
+      <div class="insight-dot">3</div>
+      <div class="insight-label">SEGURANÇA</div>
+      <div class="insight-text"><strong>Superfície de ataque mínima.</strong> super_admin nunca é exposto via API pública. Acesso via ferramentas internas com autenticação própria (SSH, painel admin, CI/CD).</div>
     </div>
   </div>
 </section>
@@ -599,14 +505,14 @@ section.block{margin-bottom:80px}
 
 <!-- ═══ BLOCK 03 — A matriz ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 03 de 07</div>
+  <div class="block-divider-eyebrow">Bloco 03 de 05</div>
   <div class="block-divider-title">A matriz de permissões</div>
 </div>
 
 <section class="block">
   <div class="block-eyebrow">Princípio da matriz</div>
   <h2 class="block-title">O código checa <em>permissões</em>, nunca roles diretamente</h2>
-  <p class="block-lead">Roles são coleções nomeadas de permissões (M:N via <code>role_permissions</code>), definidas por tenant. Isso permite adicionar um role novo amanhã sem caçar <strong>if role == 'editor'</strong> espalhado pelo código. A função <strong>can(user, action, resource)</strong> é o único ponto de decisão. Para staff, o <code>can()</code> faz fallback para membership no tenant <code>_platform</code>. Sala arquivada bloqueia toda escrita.</p>
+  <p class="block-lead">Roles são coleções nomeadas de permissões (M:N via <code>role_permissions</code>), definidas por tenant. Isso permite adicionar um role novo amanhã sem caçar <strong>if role == 'editor'</strong> espalhado pelo código. A função <strong>can(user, action, resource)</strong> é o único ponto de decisão. Sala arquivada bloqueia toda escrita.</p>
 
   <!-- Flowchart can() -->
   <div class="diagram" style="margin-top:28px">
@@ -680,11 +586,184 @@ section.block{margin-bottom:80px}
       </div>
     </div>
   </div>
+
+  <!-- Single Matrix -->
+  <div class="matrix-section">
+    <h3>Matriz de permissões — 7 roles</h3>
+    <p class="matrix-sub">tenant_admin ativo · Empresas convidam membros, criam salas e gerenciam ExternalRefs</p>
+
+    <div class="legend">
+      <div class="legend-item"><span class="dot" style="background: #C0DD97;"></span><span class="cell-full">●</span> capacidade plena</div>
+      <div class="legend-item"><span class="dot" style="background: #B5D4F4;"></span><span class="cell-own">◐</span> só sobre o que criou</div>
+      <div class="legend-item"><span class="dot" style="background: #FAC775;"></span><span class="cell-cond">○</span> condicional</div>
+      <div class="legend-item"><span class="dot" style="background: #F1EFE8;"></span><span class="cell-no">—</span> sem permissão</div>
+    </div>
+    <table class="matrix">
+      <colgroup>
+        <col style="width: 35%;">
+        <col style="width: 9.3%;"><col style="width: 9.3%;"><col style="width: 9.3%;"><col style="width: 9.3%;">
+        <col style="width: 9.3%;"><col style="width: 9.3%;"><col style="width: 9.3%;">
+      </colgroup>
+      <thead>
+        <tr>
+          <td></td>
+          <td colspan="4" class="col-group-head col-tenant">Empresa-cliente (tenant)</td>
+          <td colspan="3" class="col-group-head col-room">Sala</td>
+        </tr>
+        <tr>
+          <th style="text-align: left; padding-left: 10px;">Ação / Permissão</th>
+          <th class="role-head col-tenant">tenant_admin</th>
+          <th class="role-head col-tenant">editor</th>
+          <th class="role-head col-tenant">contributor</th>
+          <th class="role-head col-tenant">viewer</th>
+          <th class="role-head col-room">room_owner</th>
+          <th class="role-head col-room">room_member</th>
+          <th class="role-head col-room">room_guest</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="section-row"><td colspan="8">Plataforma e tenant</td></tr>
+        <tr>
+          <td class="action"><code>tenant.settings.update</code> — configurações do tenant</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>member.invite</code> — adicionar pessoa ao tenant</td>
+          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>member.role.assign</code> — definir role de membro</td>
+          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>audit.read</code> — ler logs de auditoria</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr class="section-row"><td colspan="8">Autenticação do tenant</td></tr>
+        <tr>
+          <td class="action"><code>tenant.auth_methods.manage</code> — ligar/desligar métodos de login</td>
+          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>tenant.auth_methods.read</code> — ver métodos habilitados</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr class="section-row"><td colspan="8">Resources (arquivos, refs)</td></tr>
+        <tr>
+          <td class="action"><code>file.create</code> — criar/upload arquivo</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>file.read</code> — ler arquivo</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td>
+          <td class="cell-cond col-room">○</td><td class="cell-cond col-room">○</td><td class="cell-cond col-room">○</td>
+        </tr>
+        <tr>
+          <td class="action"><code>file.update</code> — editar arquivo</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>file.delete</code> — deletar arquivo</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>file.visibility.change</code> — alternar private↔tenant</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr class="pending">
+          <td class="action"><code>external_ref.create</code> — embedar Metabase/PowerBI</td>
+          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr class="pending">
+          <td class="action"><code>external_ref.origin.allowlist</code> — gerir origens</td>
+          <td class="cell-cond col-tenant">○</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr class="section-row"><td colspan="8">Salas — criação e operação</td></tr>
+        <tr>
+          <td class="action"><code>room.create</code> — criar sala</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-no col-room">—</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>room.update</code> — renomear, settings</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-room">●</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>room.member.invite</code> — convidar à sala</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-room">●</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>room.resource.add</code> — vincular resource</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-room">●</td><td class="cell-full col-room">●</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr>
+          <td class="action"><code>room.resource.remove</code> — desvincular resource</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-room">●</td><td class="cell-own col-room">◐</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr class="section-row"><td colspan="8">Salas — ciclo de vida</td></tr>
+        <tr class="lifecycle">
+          <td class="action"><code>room.archive</code> — arquivar sala</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-room">●</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr class="lifecycle">
+          <td class="action"><code>room.unarchive</code> — reabrir sala</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-room">●</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr class="lifecycle">
+          <td class="action"><code>room.delete</code> — deletar sala</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-room">●</td><td class="cell-no col-room">—</td><td class="cell-no col-room">—</td>
+        </tr>
+        <tr class="section-row"><td colspan="8">Interação</td></tr>
+        <tr>
+          <td class="action"><code>comment.create</code> — comentar</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-room">●</td><td class="cell-full col-room">●</td><td class="cell-full col-room">●</td>
+        </tr>
+        <tr>
+          <td class="action"><code>comment.update</code> — editar comentário</td>
+          <td class="cell-own col-tenant">◐</td><td class="cell-own col-tenant">◐</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-own col-room">◐</td><td class="cell-own col-room">◐</td><td class="cell-own col-room">◐</td>
+        </tr>
+        <tr>
+          <td class="action"><code>comment.delete</code> — remover comentário</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-own col-tenant">◐</td><td class="cell-own col-tenant">◐</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-room">●</td><td class="cell-own col-room">◐</td><td class="cell-own col-room">◐</td>
+        </tr>
+        <tr>
+          <td class="action"><code>reaction.toggle</code> — reagir</td>
+          <td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-full col-tenant">●</td><td class="cell-no col-tenant">—</td>
+          <td class="cell-full col-room">●</td><td class="cell-full col-room">●</td><td class="cell-full col-room">●</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="matrix-note frozen-rule"><strong>Regra congelada:</strong> quando <code>archived_at</code> está preenchido numa sala, toda operação de escrita nessa sala é recusada — independentemente do role. Apenas <code>room.unarchive</code> é permitido para roles com essa capacidade.</div>
+    <div class="matrix-note"><strong>Como ler a matriz:</strong> ● = capacidade plena (pode agir sobre qualquer recurso no escopo); ◐ = só sobre o que criou (owner check); ○ = condicional (depende de configuração ou contexto adicional); — = sem permissão.</div>
+  </div>
 </section>
 
 <!-- ═══ BLOCK 04 — Convite & Autenticação ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 04 de 07</div>
+  <div class="block-divider-eyebrow">Bloco 04 de 05</div>
   <div class="block-divider-title">Convite & autenticação por tenant</div>
 </div>
 
@@ -767,7 +846,7 @@ section.block{margin-bottom:80px}
     <div class="insight amber">
       <div class="insight-dot">3</div>
       <div class="insight-label">QUEM CONFIGURA</div>
-      <div class="insight-text"><strong>Hoje: nodian_admin / nodian_operator.</strong> Futuro: tenant_admin poderá ligar/desligar métodos dentro do que Nodian disponibilizar para seu plano.</div>
+      <div class="insight-text"><strong>tenant_admin configura métodos de autenticação.</strong> Liga/desliga métodos dentro do que está disponível para o plano do tenant.</div>
     </div>
   </div>
 </section>
@@ -879,558 +958,9 @@ section.block{margin-bottom:80px}
   </div>
 </section>
 
-<!-- ═══ BLOCK 05 — Estado atual ═══ -->
+<!-- ═══ BLOCK 05 — Decisões pendentes ═══ -->
 <div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 05 de 07</div>
-  <div class="block-divider-title">Estado atual</div>
-</div>
-
-<section class="block">
-  <div class="block-eyebrow">Modelo centralizado</div>
-  <h2 class="block-title">Hoje a Nodian é a única produtora — e isso cabe no modelo sem ajustes</h2>
-  <p class="block-lead">Tudo funciona no estado atual sem over-engineering. O tenant existe mesmo que vazio; <strong>tenant_admin existe mas fica desligado</strong>; staff Nodian opera via membership no tenant <code>_platform</code> com badge '@ Nodian' na UI.</p>
-  <div class="insight-grid">
-    <div class="insight amber">
-      <div class="insight-dot">1</div>
-      <div class="insight-label">USUÁRIOS</div>
-      <div class="insight-text"><strong>Clientes entram como viewer.</strong> Nodian cria identidades e dá membership viewer no tenant da empresa.</div>
-    </div>
-    <div class="insight black">
-      <div class="insight-dot">2</div>
-      <div class="insight-label">CONTEÚDO</div>
-      <div class="insight-text"><strong>Staff via _platform.</strong> nodian_operator (role no _platform) entra nos tenants via fallback do can() e cria arquivos, salas, external refs.</div>
-    </div>
-    <div class="insight green">
-      <div class="insight-dot">3</div>
-      <div class="insight-label">TENANT_ADMIN</div>
-      <div class="insight-text"><strong>Existe no schema, ninguém tem.</strong> Ativado quando empresas ganharem autonomia.</div>
-    </div>
-    <div class="insight blue">
-      <div class="insight-dot">4</div>
-      <div class="insight-label">ISOLAMENTO</div>
-      <div class="insight-text"><strong>Já funciona.</strong> Cada cliente só vê seu tenant. Staff cruza via _platform com auditoria.</div>
-    </div>
-  </div>
-</section>
-
-<!-- MATRIX COMPARATIVA com toggle -->
-<section class="block">
-  <div class="block-eyebrow">Comparação · Matriz de permissões</div>
-  <h2 class="block-title">Hoje vs. amanhã — <em>mesma matriz, diferente intensidade</em></h2>
-  <p class="block-lead">Arraste o divisor para comparar os dois cenários. A coluna <strong>tenant_admin</strong> é o que muda.</p>
-
-  <!-- Diff Summary Card -->
-  <div class="diff-summary">
-    <div class="diff-summary-header">Dimensão</div>
-    <div class="diff-summary-header">Atual (1 empresa)</div>
-    <div class="diff-summary-header">Futuro (N empresas)</div>
-    <div class="diff-cell">Quem convida membros</div>
-    <div class="diff-cell diff-cell--dormant">Só Nodian (_platform operator)</div>
-    <div class="diff-cell">tenant_admin da empresa</div>
-    <div class="diff-cell">tenant_admin</div>
-    <div class="diff-cell diff-cell--dormant">Dormente — ninguém tem</div>
-    <div class="diff-cell">Ativo — 1–2 por empresa</div>
-    <div class="diff-cell">Quem cria salas</div>
-    <div class="diff-cell diff-cell--dormant">nodian_operator</div>
-    <div class="diff-cell">editor+ do tenant</div>
-    <div class="diff-cell">ExternalRef</div>
-    <div class="diff-cell diff-cell--dormant">Só Nodian cria</div>
-    <div class="diff-cell">tenant_admin (condicional)</div>
-    <div class="diff-cell">Código de permissão</div>
-    <div class="diff-cell">Mesmo — can()</div>
-    <div class="diff-cell">Mesmo — can()</div>
-  </div>
-
-  <div class="compare-container" id="compareContainer">
-    <span class="compare-label compare-label--before">Atual</span>
-    <span class="compare-label compare-label--after">Futuro</span>
-
-    <!-- BEFORE layer (estado atual) -->
-    <div class="compare-layer">
-      <h3 style="font-size:18px;font-weight:600;margin-bottom:8px;letter-spacing:-0.3px">Estado atual — uma empresa</h3>
-      <p class="matrix-sub" style="font-size:14px;font-weight:300;color:#676767;margin-bottom:20px">tenant_admin dormente · Nodian centraliza gestão de membros e configurações</p>
-
-      <div class="legend">
-        <div class="legend-item"><span class="dot" style="background: #C0DD97;"></span><span class="cell-full">●</span> capacidade plena</div>
-        <div class="legend-item"><span class="dot" style="background: #B5D4F4;"></span><span class="cell-own">◐</span> só sobre o que criou</div>
-        <div class="legend-item"><span class="dot" style="background: #FAC775;"></span><span class="cell-cond">○</span> condicional</div>
-        <div class="legend-item"><span class="dot" style="background: #F1EFE8;"></span><span class="cell-no">—</span> sem permissão</div>
-      </div>
-      <table class="matrix">
-        <colgroup>
-          <col style="width: 32%;">
-          <col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;">
-          <col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;">
-          <col style="width: 7%;"><col style="width: 6%;"><col style="width: 6%;">
-        </colgroup>
-        <thead>
-          <tr>
-            <td></td>
-            <td colspan="3" class="col-group-head col-nodian">Nodian (_platform)</td>
-            <td colspan="4" class="col-group-head col-tenant">Empresa-cliente (tenant)</td>
-            <td colspan="3" class="col-group-head col-room">Sala</td>
-          </tr>
-          <tr>
-            <th style="text-align: left; padding-left: 10px;">Ação / Permissão</th>
-            <th class="role-head col-nodian">nodian_admin</th>
-            <th class="role-head col-nodian">nodian_operator</th>
-            <th class="role-head col-nodian">nodian_support</th>
-            <th class="role-head col-tenant dormant">tenant_admin (dormente)</th>
-            <th class="role-head col-tenant">editor</th>
-            <th class="role-head col-tenant">contributor</th>
-            <th class="role-head col-tenant">viewer</th>
-            <th class="role-head col-room">room_owner</th>
-            <th class="role-head col-room">room_member</th>
-            <th class="role-head col-room">room_guest</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="section-row"><td colspan="11">Plataforma e tenant</td></tr>
-          <tr>
-            <td class="action"><code>tenant.create</code> — criar nova empresa-cliente</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>tenant.settings.update</code> — configurações do tenant</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>member.invite</code> — adicionar pessoa ao tenant</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>member.role.assign</code> — definir role de membro</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-             <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-           </tr>
-          <tr>
-            <td class="action"><code>audit.read</code> — ler logs de auditoria</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-            <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="section-row"><td colspan="11">Autenticação do tenant</td></tr>
-          <tr>
-            <td class="action"><code>tenant.auth_methods.manage</code> — ligar/desligar métodos de login</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>tenant.auth_methods.read</code> — ver métodos habilitados</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-            <td class="cell-no dormant">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="section-row"><td colspan="11">Resources (arquivos, refs)</td></tr>
-          <tr>
-            <td class="action"><code>file.create</code> — criar/upload arquivo</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>file.read</code> — ler arquivo</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-            <td class="cell-full dormant">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-            <td class="cell-cond">○</td><td class="cell-cond">○</td><td class="cell-cond">○</td>
-          </tr>
-          <tr>
-            <td class="action"><code>file.update</code> — editar arquivo</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>file.delete</code> — deletar arquivo</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>file.visibility.change</code> — alternar private↔tenant</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="pending">
-            <td class="action"><code>external_ref.create</code> — embedar Metabase/PowerBI</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-cond dormant">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="pending">
-            <td class="action"><code>external_ref.origin.allowlist</code> — gerir origens</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-cond dormant">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="section-row"><td colspan="11">Salas — criação e operação</td></tr>
-          <tr>
-            <td class="action"><code>room.create</code> — criar sala</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>room.update</code> — renomear, settings</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>room.member.invite</code> — convidar à sala</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>room.resource.add</code> — vincular resource</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>room.resource.remove</code> — desvincular resource</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="section-row"><td colspan="11">Salas — ciclo de vida</td></tr>
-          <tr class="lifecycle">
-            <td class="action"><code>room.archive</code> — arquivar sala</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="lifecycle">
-            <td class="action"><code>room.unarchive</code> — reabrir sala</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="lifecycle">
-            <td class="action"><code>room.delete</code> — deletar sala</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="section-row"><td colspan="11">Interação</td></tr>
-          <tr>
-            <td class="action"><code>comment.create</code> — comentar</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-          </tr>
-          <tr>
-            <td class="action"><code>comment.update</code> — editar comentário</td>
-            <td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-own dormant">◐</td><td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-own">◐</td>
-          </tr>
-          <tr>
-            <td class="action"><code>comment.delete</code> — remover comentário</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-own">◐</td>
-          </tr>
-          <tr>
-            <td class="action"><code>reaction.toggle</code> — reagir</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full dormant">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="matrix-note frozen-rule"><strong>Regra congelada:</strong> quando <code>archived_at</code> está preenchido numa sala, toda operação de escrita nessa sala é recusada — independentemente do role. Apenas <code>room.unarchive</code> é permitido para roles com essa capacidade.</div>
-      <div class="matrix-note"><strong>Como ler a matriz:</strong> ● = capacidade plena (pode agir sobre qualquer recurso no escopo); ◐ = só sobre o que criou (owner check); ○ = condicional (depende de configuração ou contexto adicional); — = sem permissão.</div>
-      <div class="matrix-note"><strong>Nota:</strong> No estado atual, <code>tenant_admin</code> existe no schema mas nenhuma pessoa tem esse role atribuído. <code>member.invite</code> e <code>member.role.assign</code> são operados exclusivamente pela Nodian via membership no tenant <code>_platform</code>.</div>
-    </div><!-- /compare-layer (before) -->
-
-    <!-- AFTER layer (estado futuro) — overlaid -->
-    <div class="compare-layer--after" id="compareAfter">
-      <div class="compare-layer">
-        <h3 style="font-size:18px;font-weight:600;margin-bottom:8px;letter-spacing:-0.3px">Estado futuro — N empresas</h3>
-        <p class="matrix-sub" style="font-size:14px;font-weight:300;color:#676767;margin-bottom:20px">tenant_admin ativo · Empresas convidam membros, criam salas e gerenciam ExternalRefs</p>
-
-      <div class="legend">
-        <div class="legend-item"><span class="dot" style="background: #C0DD97;"></span><span class="cell-full">●</span> capacidade plena</div>
-        <div class="legend-item"><span class="dot" style="background: #B5D4F4;"></span><span class="cell-own">◐</span> só sobre o que criou</div>
-        <div class="legend-item"><span class="dot" style="background: #FAC775;"></span><span class="cell-cond">○</span> condicional</div>
-        <div class="legend-item"><span class="dot" style="background: #F1EFE8;"></span><span class="cell-no">—</span> sem permissão</div>
-      </div>
-      <table class="matrix">
-        <colgroup>
-          <col style="width: 32%;">
-          <col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;">
-          <col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;">
-          <col style="width: 7%;"><col style="width: 6%;"><col style="width: 6%;">
-        </colgroup>
-        <thead>
-          <tr>
-            <td></td>
-            <td colspan="3" class="col-group-head col-nodian">Nodian (_platform)</td>
-            <td colspan="4" class="col-group-head col-tenant">Empresa-cliente (tenant)</td>
-            <td colspan="3" class="col-group-head col-room">Sala</td>
-          </tr>
-          <tr>
-            <th style="text-align: left; padding-left: 10px;">Ação / Permissão</th>
-            <th class="role-head col-nodian">nodian_admin</th>
-            <th class="role-head col-nodian">nodian_operator</th>
-            <th class="role-head col-nodian">nodian_support</th>
-            <th class="role-head col-tenant">tenant_admin</th>
-            <th class="role-head col-tenant">editor</th>
-            <th class="role-head col-tenant">contributor</th>
-            <th class="role-head col-tenant">viewer</th>
-            <th class="role-head col-room">room_owner</th>
-            <th class="role-head col-room">room_member</th>
-            <th class="role-head col-room">room_guest</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="section-row"><td colspan="11">Plataforma e tenant</td></tr>
-          <tr>
-            <td class="action"><code>tenant.create</code> — criar nova empresa-cliente</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>tenant.settings.update</code> — configurações do tenant</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>member.invite</code> — adicionar pessoa ao tenant</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-cond">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>member.role.assign</code> — definir role de membro</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-cond">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>audit.read</code> — ler logs de auditoria</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="section-row"><td colspan="11">Autenticação do tenant</td></tr>
-          <tr>
-            <td class="action"><code>tenant.auth_methods.manage</code> — ligar/desligar métodos de login</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-cond">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>tenant.auth_methods.read</code> — ver métodos habilitados</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="section-row"><td colspan="11">Resources (arquivos, refs)</td></tr>
-          <tr>
-            <td class="action"><code>file.create</code> — criar/upload arquivo</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>file.read</code> — ler arquivo</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-            <td class="cell-cond">○</td><td class="cell-cond">○</td><td class="cell-cond">○</td>
-          </tr>
-          <tr>
-            <td class="action"><code>file.update</code> — editar arquivo</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>file.delete</code> — deletar arquivo</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>file.visibility.change</code> — alternar private↔tenant</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="pending">
-            <td class="action"><code>external_ref.create</code> — embedar Metabase/PowerBI</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-cond">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="pending">
-            <td class="action"><code>external_ref.origin.allowlist</code> — gerir origens</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-cond">○</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="section-row"><td colspan="11">Salas — criação e operação</td></tr>
-          <tr>
-            <td class="action"><code>room.create</code> — criar sala</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>room.update</code> — renomear, settings</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>room.member.invite</code> — convidar à sala</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>room.resource.add</code> — vincular resource</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-          </tr>
-          <tr>
-            <td class="action"><code>room.resource.remove</code> — desvincular resource</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="section-row"><td colspan="11">Salas — ciclo de vida</td></tr>
-          <tr class="lifecycle">
-            <td class="action"><code>room.archive</code> — arquivar sala</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="lifecycle">
-            <td class="action"><code>room.unarchive</code> — reabrir sala</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="lifecycle">
-            <td class="action"><code>room.delete</code> — deletar sala</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-no">—</td><td class="cell-no">—</td>
-          </tr>
-          <tr class="section-row"><td colspan="11">Interação</td></tr>
-          <tr>
-            <td class="action"><code>comment.create</code> — comentar</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-          </tr>
-          <tr>
-            <td class="action"><code>comment.update</code> — editar comentário</td>
-            <td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-own">◐</td>
-          </tr>
-          <tr>
-            <td class="action"><code>comment.delete</code> — remover comentário</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-own">◐</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-own">◐</td><td class="cell-own">◐</td>
-          </tr>
-          <tr>
-            <td class="action"><code>reaction.toggle</code> — reagir</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-no">—</td>
-            <td class="cell-full">●</td><td class="cell-full">●</td><td class="cell-full">●</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="matrix-note frozen-rule"><strong>Regra congelada:</strong> quando <code>archived_at</code> está preenchido numa sala, toda operação de escrita nessa sala é recusada — independentemente do role. Apenas <code>room.unarchive</code> é permitido para roles com essa capacidade.</div>
-      <div class="matrix-note"><strong>Como ler a matriz:</strong> ● = capacidade plena (pode agir sobre qualquer recurso no escopo); ◐ = só sobre o que criou (owner check); ○ = condicional (depende de configuração ou contexto adicional); — = sem permissão.</div>
-      </div>
-    </div>
-
-    <!-- Divider handle -->
-    <div class="compare-divider" id="compareDivider"></div>
-  </div>
-</section>
-
-<!-- ═══ BLOCK 05 — Estado futuro ═══ -->
-<div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 06 de 07</div>
-  <div class="block-divider-title">Estado futuro</div>
-</div>
-
-<section class="block">
-  <div class="block-eyebrow">Modelo autônomo</div>
-  <h2 class="block-title">A migração é incremental — sem reescrita</h2>
-  <p class="block-lead">A transição para multi-tenant pleno é uma <strong>sequência de feature flags</strong>, não uma migração de schema. Cada cliente pode ser ativado para autonomia em momentos diferentes.</p>
-  <div class="insight-grid">
-    <div class="insight amber">
-      <div class="insight-dot">1</div>
-      <div class="insight-label">TENANT_ADMIN ATIVO</div>
-      <div class="insight-text"><strong>Cada empresa tem 1–2 admins próprios.</strong> Convidam membros, atribuem roles dentro do seu tenant.</div>
-    </div>
-    <div class="insight green">
-      <div class="insight-dot">2</div>
-      <div class="insight-label">CRIAÇÃO AUTÔNOMA</div>
-      <div class="insight-text"><strong>Salas criadas por qualquer editor.</strong> Empresas gerenciam seus próprios espaços colaborativos.</div>
-    </div>
-    <div class="insight black">
-      <div class="insight-dot">3</div>
-      <div class="insight-label">MESMA MATRIZ</div>
-      <div class="insight-text"><strong>Nenhuma permissão nova.</strong> O que muda é quem ocupa os roles e quais features estão ligadas.</div>
-    </div>
-    <div class="insight coral">
-      <div class="insight-dot">4</div>
-      <div class="insight-label">MULTI-MEMBERSHIP</div>
-      <div class="insight-text"><strong>Consultores suportados.</strong> Identidades podem ter memberships em múltiplos tenants. Single-tenant é regra de negócio, não constraint de banco.</div>
-    </div>
-  </div>
-</section>
-
-<section class="block">
-  <div class="block-eyebrow">O non-negotiable</div>
-  <h2 class="block-title">Isolamento entre empresas — defesa em três camadas</h2>
-  <p class="block-lead">'Nenhuma empresa vê dados de outra' é a promessa central — e ela não pode depender de uma única camada. <strong>Três defesas independentes</strong> garantem proteção mesmo com bug em uma delas.</p>
-  <div class="insight-grid">
-    <div class="insight amber">
-      <div class="insight-dot">1</div>
-      <div class="insight-label">APLICAÇÃO</div>
-      <div class="insight-text"><strong>Middleware filtra toda query.</strong> WHERE tenant_id = :current_tenant. O current_tenant vem do contexto autenticado — nunca de parâmetros da request.</div>
-    </div>
-    <div class="insight black">
-      <div class="insight-dot">2</div>
-      <div class="insight-label">BANCO</div>
-      <div class="insight-text"><strong>Row-Level Security no Postgres.</strong> Policies recusam servir linha de outro tenant. Staff com membership no _platform tem bypass auditado.</div>
-    </div>
-    <div class="insight coral">
-      <div class="insight-dot">3</div>
-      <div class="insight-label">AUDITORIA</div>
-      <div class="insight-text"><strong>Log estruturado de cada acesso.</strong> Quem, o quê, quando, por qual role. Especialmente acessos cross-tenant de staff.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ BLOCK 06 — Decisões pendentes ═══ -->
-<div class="block-divider">
-  <div class="block-divider-eyebrow">Bloco 07 de 07</div>
+  <div class="block-divider-eyebrow">Bloco 05 de 05</div>
   <div class="block-divider-title">Decisões pendentes</div>
 </div>
 
@@ -1495,7 +1025,7 @@ section.block{margin-bottom:80px}
 
 <!-- ═══ CLOSING ═══ -->
 <div class="closing">
-  <h2 class="closing-headline">v3 — modelo validado contra Django</h2>
+  <h2 class="closing-headline">v4 — modelo simplificado</h2>
   <div class="closing-summary">
     <div class="closing-row">
       <div class="closing-key">Entidades</div>
@@ -1510,16 +1040,8 @@ section.block{margin-bottom:80px}
       <div class="closing-val">Multi-membership suportada · UNIQUE(identity_id, tenant_id) · Lifecycle: status, invited_at, accepted_at</div>
     </div>
     <div class="closing-row">
-      <div class="closing-key">Staff Nodian</div>
-      <div class="closing-val">Membership no tenant _platform · provider_access eliminado · Mecanismo único para tudo</div>
-    </div>
-    <div class="closing-row">
       <div class="closing-key">Isolamento</div>
       <div class="closing-val">Middleware + RLS + auditoria · Três defesas independentes</div>
-    </div>
-    <div class="closing-row">
-      <div class="closing-key">Migração</div>
-      <div class="closing-val">Incremental via feature flags · Mesmo schema, empresas migram individualmente</div>
     </div>
     <div class="closing-row">
       <div class="closing-key">Pendente</div>
@@ -1528,6 +1050,10 @@ section.block{margin-bottom:80px}
     <div class="closing-row">
       <div class="closing-key">Convite</div>
       <div class="closing-val">Auth methods por tenant · Multi-membership para consultores · Membership pending até aceite</div>
+    </div>
+    <div class="closing-row">
+      <div class="closing-key">Super_admin</div>
+      <div class="closing-val">Fora do modelo de roles — resolvido no deploy · Cria tenants, provisiona tenant_admin, gerencia infra</div>
     </div>
   </div>
   <div class="closing-cuidados">
@@ -1548,30 +1074,5 @@ section.block{margin-bottom:80px}
 
 </div><!-- /page-container -->
 
-<script>
-(function() {
-  var container = document.getElementById('compareContainer');
-  var divider = document.getElementById('compareDivider');
-  var afterLayer = document.getElementById('compareAfter');
-  var dragging = false;
-
-  function setPosition(x) {
-    var rect = container.getBoundingClientRect();
-    var pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
-    divider.style.left = (pct * 100) + '%';
-    afterLayer.style.clipPath = 'inset(0 0 0 ' + (pct * 100) + '%)';
-  }
-
-  divider.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
-  divider.addEventListener('touchstart', function(e) { dragging = true; });
-  document.addEventListener('mousemove', function(e) { if (dragging) setPosition(e.clientX); });
-  document.addEventListener('touchmove', function(e) { if (dragging) setPosition(e.touches[0].clientX); });
-  document.addEventListener('mouseup', function() { dragging = false; });
-  document.addEventListener('touchend', function() { dragging = false; });
-
-  // Init at 50%
-  setPosition(container.getBoundingClientRect().left + container.offsetWidth / 2);
-})();
-</script>
 </body>
 </html>
