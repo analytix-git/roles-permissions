@@ -309,19 +309,34 @@ section.block{margin-bottom:80px}
   <div class="diagram-title">Modelo de entidades v4</div>
   <pre class="mermaid">
 erDiagram
+    Tenant }o--o{ Identity : "M:N via tenant_memberships"
+    Room }o--o{ Identity : "M:N via room_memberships"
     Tenant ||--o{ Role : "1:N"
     Tenant ||--o{ Room : "1:N"
-    Tenant ||--o{ Membership : "1:N"
     Tenant ||--o{ AuditLog : "1:N"
     Role }o--o{ Permission : "M:N via role_permissions"
-    Membership }o--|| Identity : "N:1"
-    Room ||--o{ MembershipRoom : "1:N"
-    Membership ||--o{ MembershipRoom : "1:N"
 
     Tenant {
         string name
         string type
         string slug "fronteira de dados"
+    }
+    tenant_memberships {
+        uuid tenant_id
+        uuid identity_id
+        uuid role_id "tenant_role"
+        string status "pending|active|suspended|deactivated"
+        timestamp invited_at
+        timestamp accepted_at
+        timestamp deactivated_at
+        uuid invited_by
+        string _constraint "UNIQUE identity_id tenant_id"
+    }
+    room_memberships {
+        uuid room_id
+        uuid identity_id
+        uuid role_id "room_role"
+        string _constraint "UNIQUE identity_id room_id"
     }
     Role {
         string slug
@@ -337,26 +352,10 @@ erDiagram
         timestamp archived_at "null = ativa"
         uuid tenant_id
     }
-    Membership {
-        uuid identity_id
-        uuid tenant_id
-        string tenant_role
-        string status "pending|active|suspended|deactivated"
-        timestamp invited_at
-        timestamp accepted_at
-        timestamp deactivated_at
-        uuid invited_by "UNIQUE identity_id tenant_id"
-    }
-    MembershipRoom {
-        uuid membership_id
-        uuid room_id
-        string room_role "room_owner|room_member|room_viewer"
-        string _constraint "UNIQUE membership_id room_id"
-    }
     Identity {
         string email "unico"
         string name
-        string avatar_url "pode ter N memberships"
+        string avatar_url "pode ter N tenant_memberships"
     }
     AuditLog {
         uuid identity_id
