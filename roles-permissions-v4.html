@@ -320,61 +320,6 @@ erDiagram
     Tenant ||--o{ AuditLog : "1:N"
     Role ||--o{ role_permissions : "1:N"
     Permission ||--o{ role_permissions : "1:N"
-
-    Tenant {
-        string name
-        string type
-        string slug "fronteira de dados"
-    }
-    tenant_memberships {
-        uuid tenant_id
-        uuid identity_id
-        uuid role_id "tenant_role"
-        string status "pending|active|suspended|deactivated"
-        timestamp invited_at
-        timestamp accepted_at
-        timestamp deactivated_at
-        uuid invited_by
-        string _constraint "UNIQUE identity_id tenant_id"
-    }
-    room_memberships {
-        uuid room_id
-        uuid identity_id
-        uuid role_id "room_role"
-        string _constraint "UNIQUE identity_id room_id"
-    }
-    role_permissions {
-        uuid role_id
-        uuid permission_id
-        string _constraint "UNIQUE role_id permission_id"
-    }
-    Role {
-        string slug
-        string name
-        string scope "tenant | room"
-    }
-    Permission {
-        string action
-        string resource_type "ex file.create room.archive"
-    }
-    Room {
-        string name
-        timestamp archived_at "null = ativa"
-        uuid tenant_id
-    }
-    Identity {
-        string email "unico"
-        string name
-        string avatar_url
-    }
-    AuditLog {
-        uuid identity_id
-        string action
-        string resource_type
-        uuid resource_id
-        timestamp timestamp
-        json metadata
-    }
   </pre>
   <div style="text-align:center;margin-top:12px">
     <span style="background:#f5f5f5;border:1px solid #e0e0e0;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#676767">Decisão: sem permissões diretas por Identity — tudo passa por Role</span>
