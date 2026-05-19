@@ -309,12 +309,15 @@ section.block{margin-bottom:80px}
   <div class="diagram-title">Modelo de entidades v4</div>
   <pre class="mermaid">
 erDiagram
-    Tenant }o--o{ Identity : "M:N via tenant_memberships"
-    Room }o--o{ Identity : "M:N via room_memberships"
+    Tenant ||--o{ tenant_memberships : "1:N"
+    Identity ||--o{ tenant_memberships : "1:N"
+    Room ||--o{ room_memberships : "1:N"
+    Identity ||--o{ room_memberships : "1:N"
     Tenant ||--o{ Role : "1:N"
     Tenant ||--o{ Room : "1:N"
     Tenant ||--o{ AuditLog : "1:N"
-    Role }o--o{ Permission : "M:N via role_permissions"
+    Role ||--o{ role_permissions : "1:N"
+    Permission ||--o{ role_permissions : "1:N"
 
     Tenant {
         string name
@@ -338,6 +341,11 @@ erDiagram
         uuid role_id "room_role"
         string _constraint "UNIQUE identity_id room_id"
     }
+    role_permissions {
+        uuid role_id
+        uuid permission_id
+        string _constraint "UNIQUE role_id permission_id"
+    }
     Role {
         string slug
         string name
@@ -355,7 +363,7 @@ erDiagram
     Identity {
         string email "unico"
         string name
-        string avatar_url "pode ter N tenant_memberships"
+        string avatar_url
     }
     AuditLog {
         uuid identity_id
