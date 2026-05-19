@@ -313,6 +313,8 @@ erDiagram
     Identity ||--o{ tenant_memberships : "1:N"
     Room ||--o{ room_memberships : "1:N"
     Identity ||--o{ room_memberships : "1:N"
+    tenant_memberships }o--|| Role : "has role"
+    room_memberships }o--|| Role : "has role"
     Tenant ||--o{ Role : "1:N"
     Tenant ||--o{ Room : "1:N"
     Tenant ||--o{ AuditLog : "1:N"
