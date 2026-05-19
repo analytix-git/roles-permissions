@@ -197,6 +197,10 @@ section.block{margin-bottom:80px}
   .matrix-section{padding:20px 16px}
 }
 </style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'neutral', fontFamily: 'Poppins, sans-serif' });
+</script>
 </head>
 <body>
 
@@ -300,82 +304,88 @@ section.block{margin-bottom:80px}
   </div>
 </section>
 
-<!-- ER Diagram v4 — Flowchart style, Tenant first -->
+<!-- ER Diagram v4 — Mermaid -->
 <div class="diagram" style="margin-top:28px">
   <div class="diagram-title">Modelo de entidades v4</div>
-  <div class="flowchart">
-    <!-- Tenant — root -->
-    <div class="fc-node" style="background:rgba(85,181,131,.06);border:1.5px solid #55b583"><strong>Tenant</strong><br><span style="font-size:11px;font-weight:300;color:#676767">empresa-cliente · fronteira de dados</span></div>
-    <div class="fc-arrow"></div>
+  <pre class="mermaid">
+erDiagram
+    Tenant ||--o{ Role : "1:N"
+    Tenant ||--o{ Room : "1:N"
+    Tenant ||--o{ Membership : "1:N"
+    Tenant ||--o{ AuditLog : "1:N"
+    Role }o--o{ Permission : "M:N via role_permissions"
+    Membership }o--|| Identity : "N:1"
+    Room ||--o{ MembershipRoom : "1:N"
+    Membership ||--o{ MembershipRoom : "1:N"
 
-    <!-- Branch: Role, Room, Membership, AuditLog -->
-    <div class="fc-branch" style="gap:32px">
-
-      <!-- Arm 1: Role → Permission -->
-      <div class="fc-branch-arm">
-        <div class="fc-branch-label">1 : N</div>
-        <div class="fc-node fc-node--decision"><strong>Role</strong><br><span style="font-size:11px;font-weight:300">slug + name · definido por tenant<br>escopo: tenant OU room</span></div>
-        <div class="fc-arrow"></div>
-        <div class="fc-branch-label" style="font-size:10px;color:#676767">M : N via role_permissions</div>
-        <div class="fc-arrow" style="height:10px"></div>
-        <div class="fc-node" style="border-color:#ab87bd;background:rgba(171,135,189,.06)"><strong>Permission</strong><br><span style="font-size:11px;font-weight:300;color:#676767">action + resource_type<br>ex: file.create, room.archive</span></div>
-      </div>
-
-      <!-- Arm 2: Room → MembershipRoom -->
-      <div class="fc-branch-arm">
-        <div class="fc-branch-label">1 : N</div>
-        <div class="fc-node fc-node--process"><strong>Room</strong><br><span style="font-size:11px;font-weight:300;color:#676767">espaço colaborativo<br>dentro do tenant</span></div>
-        <div class="fc-arrow"></div>
-        <div class="fc-branch-label" style="font-size:10px;color:#676767">1 : N</div>
-        <div class="fc-arrow" style="height:10px"></div>
-        <div class="fc-node" style="border-color:#5b9bd5;background:rgba(91,155,213,.06)"><strong>MembershipRoom</strong><br><span style="font-size:11px;font-weight:300;color:#676767">Membership + Room + room_role<br>UNIQUE(membership_id, room_id)<br>quem está na sala e com qual papel</span></div>
-      </div>
-
-      <!-- Arm 3: Membership → Identity -->
-      <div class="fc-branch-arm">
-        <div class="fc-branch-label">1 : N</div>
-        <div class="fc-node fc-node--decision"><strong>Membership</strong><br><span style="font-size:11px;font-weight:300">Identity + Tenant + tenant_role<br>status · invited_at · accepted_at<br>UNIQUE(identity_id, tenant_id)</span></div>
-        <div class="fc-arrow"></div>
-        <div class="fc-branch-label" style="font-size:10px;color:#676767">N : 1</div>
-        <div class="fc-arrow" style="height:10px"></div>
-        <div class="fc-node fc-node--process"><strong>Identity</strong><br><span style="font-size:11px;font-weight:300;color:#676767">quem a pessoa é · e-mail único<br>pode ter N memberships</span></div>
-      </div>
-
-      <!-- Arm 4: AuditLog -->
-      <div class="fc-branch-arm">
-        <div class="fc-branch-label">1 : N</div>
-        <div class="fc-node" style="border-color:#e07b5a;background:rgba(224,123,90,.06)"><strong>AuditLog</strong><br><span style="font-size:11px;font-weight:300;color:#676767">identity_id · action · resource_type<br>resource_id · timestamp · metadata</span></div>
-      </div>
-
-    </div>
-
-    <!-- Relationship note: MembershipRoom connects Membership ↔ Room -->
-    <div style="text-align:center;margin-top:20px">
-      <span style="background:#eef4fa;border:1px solid #5b9bd5;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#3a6d99">MembershipRoom liga Membership ↔ Room · atribui room_role · resolve Identity via Membership</span>
-    </div>
-
-    <!-- Decision note -->
-    <div style="text-align:center;margin-top:12px">
-      <span style="background:#f5f5f5;border:1px solid #e0e0e0;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#676767">Decisão: sem permissões diretas por Identity — tudo passa por Role</span>
-    </div>
+    Tenant {
+        string name
+        string type
+        string slug "fronteira de dados"
+    }
+    Role {
+        string slug
+        string name
+        string scope "tenant | room"
+    }
+    Permission {
+        string action
+        string resource_type "ex file.create room.archive"
+    }
+    Room {
+        string name
+        timestamp archived_at "null = ativa"
+        uuid tenant_id
+    }
+    Membership {
+        uuid identity_id
+        uuid tenant_id
+        string tenant_role
+        string status "pending|active|suspended|deactivated"
+        timestamp invited_at
+        timestamp accepted_at
+        timestamp deactivated_at
+        uuid invited_by "UNIQUE identity_id tenant_id"
+    }
+    MembershipRoom {
+        uuid membership_id
+        uuid room_id
+        string room_role "room_owner|room_member|room_viewer"
+        string _constraint "UNIQUE membership_id room_id"
+    }
+    Identity {
+        string email "unico"
+        string name
+        string avatar_url "pode ter N memberships"
+    }
+    AuditLog {
+        uuid identity_id
+        string action
+        string resource_type
+        uuid resource_id
+        timestamp timestamp
+        json metadata
+    }
+  </pre>
+  <div style="text-align:center;margin-top:12px">
+    <span style="background:#f5f5f5;border:1px solid #e0e0e0;border-radius:8px;padding:3px 10px;font-weight:500;font-size:11px;color:#676767">Decisão: sem permissões diretas por Identity — tudo passa por Role</span>
   </div>
 </div>
 
-<!-- Scope Nesting Diagram -->
+<!-- Scope Nesting Diagram — Mermaid -->
 <div class="diagram">
   <div class="diagram-title">Hierarquia de escopos — Room nunca eleva acima do Tenant</div>
-  <div class="scope-nest">
-    <div class="scope-box scope-box--tenant">
-      <span class="scope-label scope-label--tenant">Tenant</span>
-      <div class="scope-box scope-box--room">
-        <span class="scope-label scope-label--room">Room</span>
-        <div style="font-size:11px;color:#676767;text-align:center;padding:8px 12px">
-          Permissão efetiva =<br><strong style="color:#161616">min(tenant_cap, room_cap)</strong>
-        </div>
-      </div>
-    </div>
-    <div class="scope-rule">Room soma acesso contextual, nunca promove poder</div>
-  </div>
+  <pre class="mermaid">
+graph TD
+    subgraph TENANT["🏢 Tenant"]
+        direction TB
+        subgraph ROOM["🚪 Room"]
+            PERM["Permissão efetiva =<br/><b>min(tenant_cap, room_cap)</b>"]
+        end
+    end
+    RULE["↑ Room soma acesso contextual, nunca promove poder"]
+    TENANT ~~~ RULE
+  </pre>
 </div>
 
 <section class="block">
@@ -525,77 +535,27 @@ section.block{margin-bottom:80px}
   <h2 class="block-title">O código checa <em>permissões</em>, nunca roles diretamente</h2>
   <p class="block-lead">Roles são coleções nomeadas de permissões (M:N via <code>role_permissions</code>), definidas por tenant. Isso permite adicionar um role novo amanhã sem caçar <strong>if role == 'editor'</strong> espalhado pelo código. A função <strong>can(user, action, resource)</strong> é o único ponto de decisão. Sala arquivada bloqueia toda escrita.</p>
 
-  <!-- Flowchart can() -->
+  <!-- Flowchart can() — Mermaid -->
   <div class="diagram" style="margin-top:28px">
     <div class="diagram-title">Fluxo de decisão — can(user, action, resource)</div>
-    <div class="flowchart">
-      <div class="fc-node fc-node--start"><span class="fc-code">can(user, action, resource)</span></div>
-      <div class="fc-arrow"></div>
-      <div class="fc-node fc-node--process">Identifica <strong>tenant_role</strong> do user via membership</div>
-      <div class="fc-arrow"></div>
-      <div class="fc-node fc-node--decision">Recurso está numa sala?</div>
-      <div class="fc-arrow"></div>
-      <div class="fc-branch">
-        <div class="fc-branch-arm">
-          <div class="fc-branch-label">SIM</div>
-          <div class="fc-node fc-node--process">Identifica <strong>room_role</strong></div>
-          <div class="fc-arrow"></div>
-          <div class="fc-node fc-node--decision">Sala archived?</div>
-          <div class="fc-arrow"></div>
-          <div class="fc-branch">
-            <div class="fc-branch-arm">
-              <div class="fc-branch-label">SIM</div>
-              <div class="fc-node fc-node--decision" style="font-size:11px">action == unarchive<br>& role pode?</div>
-              <div class="fc-arrow"></div>
-              <div class="fc-branch">
-                <div class="fc-branch-arm">
-                  <div class="fc-branch-label">SIM</div>
-                  <div class="fc-node fc-node--allow">ALLOW</div>
-                </div>
-                <div class="fc-branch-arm">
-                  <div class="fc-branch-label">NÃO</div>
-                  <div class="fc-node fc-node--deny">DENY</div>
-                </div>
-              </div>
-            </div>
-            <div class="fc-branch-arm">
-              <div class="fc-branch-label">NÃO</div>
-              <div class="fc-node fc-node--process">Permissão efetiva =<br><strong>min(tenant_cap, room_cap)</strong></div>
-              <div class="fc-arrow"></div>
-              <div class="fc-node fc-node--decision">Tem permissão?</div>
-              <div class="fc-arrow"></div>
-              <div class="fc-branch">
-                <div class="fc-branch-arm">
-                  <div class="fc-branch-label">SIM</div>
-                  <div class="fc-node fc-node--allow">ALLOW</div>
-                </div>
-                <div class="fc-branch-arm">
-                  <div class="fc-branch-label">NÃO</div>
-                  <div class="fc-node fc-node--deny">DENY</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="fc-branch-arm">
-          <div class="fc-branch-label">NÃO</div>
-          <div class="fc-node fc-node--process">Usa só <strong>tenant_role</strong></div>
-          <div class="fc-arrow"></div>
-          <div class="fc-node fc-node--decision">Tem permissão?</div>
-          <div class="fc-arrow"></div>
-          <div class="fc-branch">
-            <div class="fc-branch-arm">
-              <div class="fc-branch-label">SIM</div>
-              <div class="fc-node fc-node--allow">ALLOW</div>
-            </div>
-            <div class="fc-branch-arm">
-              <div class="fc-branch-label">NÃO</div>
-              <div class="fc-node fc-node--deny">DENY</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <pre class="mermaid">
+flowchart TD
+    A["can(user, action, resource)"] --> B["Identifica tenant_role via membership"]
+    B --> C{"Recurso está numa sala?"}
+    C -->|SIM| D["Identifica room_role"]
+    C -->|NÃO| H["Usa só tenant_role"]
+    D --> E{"Sala archived?"}
+    E -->|SIM| F{"action == unarchive & role pode?"}
+    F -->|SIM| G["✅ ALLOW"]
+    F -->|NÃO| X1["❌ DENY"]
+    E -->|NÃO| I["Permissão efetiva = min(tenant_cap, room_cap)"]
+    I --> J{"Tem permissão?"}
+    J -->|SIM| K["✅ ALLOW"]
+    J -->|NÃO| X2["❌ DENY"]
+    H --> L{"Tem permissão?"}
+    L -->|SIM| M["✅ ALLOW"]
+    L -->|NÃO| X3["❌ DENY"]
+    </pre>
   </div>
 
   <!-- Single Matrix -->
@@ -854,68 +814,34 @@ section.block{margin-bottom:80px}
   <h2 class="block-title">O caminho do convite — de <em>member.invite</em> até o primeiro login</h2>
   <p class="block-lead">O convite por e-mail é o início da jornada. Mas o que o convidado vê ao clicar no link <strong>depende dos métodos habilitados no tenant</strong>.</p>
 
-  <!-- Flowchart: Invite flow -->
+  <!-- Flowchart: Invite flow — Mermaid -->
   <div class="diagram">
     <div class="diagram-title">Fluxo de convite — member.invite até autenticação</div>
-    <div class="flowchart">
-      <div class="fc-node fc-node--start"><span class="fc-code">member.invite(email, tenant, role)</span></div>
-      <div class="fc-arrow"></div>
-      <div class="fc-node fc-node--decision">Identidade já existe?</div>
-      <div class="fc-arrow"></div>
-      <div class="fc-branch">
-        <div class="fc-branch-arm">
-          <div class="fc-branch-label">SIM</div>
-          <div class="fc-node fc-node--decision">Já tem membership neste tenant?</div>
-          <div class="fc-arrow"></div>
-          <div class="fc-branch">
-            <div class="fc-branch-arm">
-              <div class="fc-branch-label">SIM</div>
-              <div class="fc-node fc-node--deny">REJEITA — UNIQUE(identity, tenant)</div>
-            </div>
-            <div class="fc-branch-arm">
-              <div class="fc-branch-label">NÃO</div>
-              <div class="fc-node fc-node--process">Cria membership (status: <strong>pending</strong>)</div>
-              <div class="fc-arrow"></div>
-              <div class="fc-node fc-node--process">Envia e-mail de convite</div>
-            </div>
-          </div>
-        </div>
-        <div class="fc-branch-arm">
-          <div class="fc-branch-label">NÃO</div>
-          <div class="fc-node fc-node--process">Cria identidade + membership (<strong>pending</strong>)</div>
-          <div class="fc-arrow"></div>
-          <div class="fc-node fc-node--process">Envia e-mail de convite</div>
-        </div>
-      </div>
-    </div>
+    <pre class="mermaid">
+flowchart TD
+    A["member.invite(email, tenant, role)"] --> B{"Identidade já existe?"}
+    B -->|SIM| C{"Já tem membership neste tenant?"}
+    B -->|NÃO| F["Cria identidade + membership (pending)"]
+    C -->|SIM| D["❌ REJEITA — UNIQUE(identity, tenant)"]
+    C -->|NÃO| E["Cria membership (status: pending)"]
+    E --> G["Envia e-mail de convite"]
+    F --> G
+    </pre>
   </div>
 
   <div class="diagram">
     <div class="diagram-title">O que acontece quando o convidado clica no link</div>
-    <div class="flowchart">
-      <div class="fc-node fc-node--start">Convidado clica no link do e-mail</div>
-      <div class="fc-arrow"></div>
-      <div class="fc-node fc-node--process">Sistema resolve o <strong>tenant</strong> a partir do token do convite</div>
-      <div class="fc-arrow"></div>
-      <div class="fc-node fc-node--process">Busca <strong>auth_methods habilitados</strong> no tenant</div>
-      <div class="fc-arrow"></div>
-      <div class="fc-node fc-node--decision">Quantos métodos ativos?</div>
-      <div class="fc-arrow"></div>
-      <div class="fc-branch">
-        <div class="fc-branch-arm">
-          <div class="fc-branch-label">UM</div>
-          <div class="fc-node fc-node--process">Redireciona direto para o fluxo daquele método</div>
-        </div>
-        <div class="fc-branch-arm">
-          <div class="fc-branch-label">VÁRIOS</div>
-          <div class="fc-node fc-node--process">Mostra tela de escolha:<br>"Como deseja entrar?"</div>
-        </div>
-      </div>
-      <div class="fc-arrow"></div>
-      <div class="fc-node fc-node--process">Usuário completa autenticação pelo método escolhido</div>
-      <div class="fc-arrow"></div>
-      <div class="fc-node fc-node--allow">Membership ativada → acesso ao tenant</div>
-    </div>
+    <pre class="mermaid">
+flowchart TD
+    A["Convidado clica no link do e-mail"] --> B["Sistema resolve o tenant a partir do token"]
+    B --> C["Busca auth_methods habilitados no tenant"]
+    C --> D{"Quantos métodos ativos?"}
+    D -->|UM| E["Redireciona direto para o fluxo daquele método"]
+    D -->|VÁRIOS| F["Mostra tela de escolha: Como deseja entrar?"]
+    E --> G["Usuário completa autenticação"]
+    F --> G
+    G --> H["✅ Membership ativada → acesso ao tenant"]
+    </pre>
   </div>
 </section>
 
